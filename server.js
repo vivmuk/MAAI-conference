@@ -125,13 +125,17 @@ async function handleChat(req, res) {
 
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
-        let buffer = "";
         let isAborted = false;
 
         // Handle client disconnection
         req.on("close", () => {
           isAborted = true;
           controller.abort();
+          try {
+            reader.cancel();
+          } catch (e) {
+            // Already cancelled
+          }
         });
 
         try {
@@ -139,42 +143,14 @@ async function handleChat(req, res) {
             if (isAborted) break;
             
             const { done, value } = await reader.read();
-            if (done) {
-              // Send final [DONE] marker if buffer has content
-              if (buffer.trim()) {
-                const lines = buffer.split("\n");
-                for (const line of lines) {
-                  if (line.trim() && !line.startsWith("data: ")) {
-                    res.write(`data: ${line}\n`);
-                  } else if (line.trim()) {
-                    res.write(line + "\n");
-                  }
-                }
-              }
-              res.write("data: [DONE]\n\n");
-              break;
-            }
+            if (done) break;
 
             if (isAborted) break;
 
-            buffer += decoder.decode(value, { stream: true });
-            
-            // Process complete lines
-            const lines = buffer.split("\n");
-            buffer = lines.pop() || "";
-
-            for (const line of lines) {
-              if (isAborted) break;
-              if (line.trim()) {
-                // Forward as-is if already has data: prefix, otherwise add it
-                if (line.startsWith("data: ")) {
-                  res.write(line + "\n");
-                } else {
-                  res.write(`data: ${line}\n`);
-                }
-              }
+            // Forward the chunk directly to the client
+            if (!res.destroyed && !res.closed) {
+              res.write(value);
             }
-            res.write("\n");
           }
         } catch (streamError) {
           // Only send error if connection is still open and not aborted
