@@ -54,6 +54,7 @@ async function handleChat(req, res) {
     try {
       const payload = JSON.parse(body || "{}");
       const prompt = payload.prompt || "";
+      const useStreaming = payload.stream !== false;
       const systemPrompt = payload.systemPrompt || "You are a helpful Medical Affairs AI assistant. Format all responses using short paragraphs and bullet dots (•). Do not use markdown formatting such as headers (#), bold (**), or bullet points (* or -). Keep responses clear, professional, and actionable.";
 
       if (!prompt.trim()) {
@@ -63,7 +64,7 @@ async function handleChat(req, res) {
 
       const model = payload.model || DEFAULT_MODEL;
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 30000);
+      const timeout = setTimeout(() => controller.abort(), 120000);
 
       const messages = [
         { role: "system", content: systemPrompt },
@@ -80,8 +81,9 @@ async function handleChat(req, res) {
           model,
           messages,
           temperature: 0.7,
-          max_tokens: 1200,
-          stream: false,
+          max_tokens: 8000,
+          stream: useStreaming,
+          stream_options: useStreaming ? { include_usage: true } : undefined,
           venice_parameters: {
             enable_web_search: "off",
             include_venice_system_prompt: false,
@@ -98,12 +100,34 @@ async function handleChat(req, res) {
         return;
       }
 
-      const data = await response.json();
-      const content = data.choices && data.choices[0] && data.choices[0].message
-        ? data.choices[0].message.content
-        : "";
+      if (useStreaming) {
+        res.writeHead(200, {
+          "Content-Type": "text/event-stream",
+          "Cache-Control": "no-cache",
+          "Connection": "keep-alive",
+        });
 
-      sendJson(res, 200, { content });
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            const chunk = decoder.decode(value, { stream: true });
+            res.write(chunk);
+          }
+        } finally {
+          reader.releaseLock();
+          res.end();
+        }
+      } else {
+        const data = await response.json();
+        const content = data.choices && data.choices[0] && data.choices[0].message
+          ? data.choices[0].message.content
+          : "";
+        sendJson(res, 200, { content });
+      }
     } catch (error) {
       sendJson(res, 500, { error: "Server error while calling AI." });
     }

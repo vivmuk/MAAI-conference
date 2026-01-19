@@ -152,7 +152,7 @@ function setupSuperpowerPage() {
     // Add user message
     addAIMessage("user", prompt);
 
-    // Add loading message
+    // Add loading message initially, then replace with streaming content
     addAIMessage("assistant", "", true);
     startLoadingAnimation();
 
@@ -160,18 +160,62 @@ function setupSuperpowerPage() {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt, systemPrompt: getSystemPrompt() }),
+        body: JSON.stringify({ prompt, systemPrompt: getSystemPrompt(), stream: true }),
       });
 
-      const data = await response.json();
-      stopLoadingAnimation();
-
       if (!response.ok) {
-        throw new Error(data.error || "AI request failed.");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "AI request failed.");
       }
 
-      const cleaned = normalizeResponse(data.content || "");
-      addAIMessage("assistant", cleaned || "No response returned.");
+      // Handle streaming response
+      stopLoadingAnimation();
+
+      // Create the assistant message element for streaming content
+      const assistantMsg = addAIMessage("assistant", "");
+      const contentDiv = assistantMsg.querySelector(".ai-message-content");
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let fullContent = "";
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+
+        // Process SSE lines
+        const lines = buffer.split("\n");
+        buffer = lines.pop() || "";
+
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            const data = line.slice(6);
+            if (data === "[DONE]") continue;
+
+            try {
+              const parsed = JSON.parse(data);
+              const chunk = parsed.choices?.[0]?.delta?.content;
+              if (chunk) {
+                fullContent += chunk;
+                contentDiv.textContent = normalizeResponse(fullContent);
+                aiMessages.scrollTop = aiMessages.scrollHeight;
+              }
+            } catch {
+              // Skip non-JSON lines
+            }
+          }
+        }
+      }
+
+      // Final normalization
+      if (fullContent) {
+        contentDiv.textContent = normalizeResponse(fullContent);
+      } else {
+        contentDiv.textContent = "No response returned.";
+      }
     } catch (error) {
       stopLoadingAnimation();
       addAIMessage("assistant", `Error: ${error.message}`);
