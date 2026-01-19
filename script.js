@@ -270,6 +270,57 @@ function setupSuperpowerPage() {
     });
   });
 
+  // Setup "Copy Prompt" buttons
+  const copyPromptBtns = Array.from(document.querySelectorAll(".copy-prompt-btn"));
+  copyPromptBtns.forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      const prompt = btn.dataset.prompt;
+      const accordion = btn.closest(".scenario-accordion");
+      const contextTextarea = accordion ? accordion.querySelector(".context-input") : null;
+      
+      // Build full prompt with context if available
+      let fullPrompt = prompt;
+      if (contextTextarea && contextTextarea.value.trim()) {
+        const context = contextTextarea.value.trim();
+        fullPrompt = `Context:\n${context}\n\nInstruction:\n${prompt}`;
+      }
+
+      try {
+        await navigator.clipboard.writeText(fullPrompt);
+        // Visual feedback
+        const originalText = btn.textContent;
+        btn.textContent = "Copied!";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove("copied");
+        }, 2000);
+      } catch (error) {
+        // Fallback for older browsers
+        const textArea = document.createElement("textarea");
+        textArea.value = fullPrompt;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand("copy");
+          const originalText = btn.textContent;
+          btn.textContent = "Copied!";
+          btn.classList.add("copied");
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.classList.remove("copied");
+          }, 2000);
+        } catch (err) {
+          alert("Failed to copy. Please copy manually.");
+        }
+        document.body.removeChild(textArea);
+      }
+    });
+  });
+
   // Send button
   if (aiSendBtn) {
     aiSendBtn.addEventListener("click", sendMessage);
