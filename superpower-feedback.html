@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Provide Feedback</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="superpower" data-superpower="feedback">
+  <div class="page">
+    <nav class="top-nav">
+      <a class="logo" href="index.html">AI Superpowers</a>
+      <div class="nav-links">
+        <a href="craft.html">CRAFT Framework</a>
+        <a href="superpower-ideas.html">Generate Ideas</a>
+        <a href="superpower-analyze.html">Analyze Content</a>
+        <a href="superpower-generate.html">Generate Content</a>
+        <a href="superpower-feedback.html" class="active">Provide Feedback</a>
+      </div>
+    </nav>
+
+    <header class="page-hero">
+      <div>
+        <p class="eyebrow">Superpower 4</p>
+        <h1>Provide Feedback</h1>
+        <p class="lead">Get coaching to improve tone, clarity, and reply likelihood before you send.</p>
+        <p><strong>How AI does this:</strong> It reviews for tone, relevance, and clarity, then suggests concrete improvements.</p>
+      </div>
+      <div class="hero-panel accent">
+        <picture class="card-icon">
+          <source srcset="assets/icon-feedback.webp" type="image/webp" />
+          <img src="assets/icon-feedback.svg" alt="Provide feedback" />
+        </picture>
+        <div>
+          <h2>Core prompt</h2>
+          <p>Act as my MSL email communication coach. Give me 3 specific improvements that would increase reply likelihood - tone, clarity, or relevance - and explain why.</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Practice use cases</h2>
+        <p>Pick a scenario to load the context and good prompt automatically.</p>
+      </div>
+      <div class="scenario-layout">
+        <div class="scenario-list">
+          <button class="scenario-card" type="button"
+            data-title="Email Coach"
+            data-summary="Get coaching on an HCP email to increase reply likelihood."
+            data-audience="Oncology HCP"
+            data-goal="Improve tone, clarity, and relevance for better response rates."
+            data-output="3 improvements with rationale"
+            data-context="Draft email:\nHi Dr. Patel,\nI wanted to follow up on our brief conversation at ASCO. I know you mentioned being interested in seeing more data on our therapy in the second-line setting. I have some materials I could share and would be happy to set up a call to walk you through the key findings. Let me know if you have any availability in the coming weeks.\nBest,\nJordan"
+            data-good="Context: Follow-up email to an oncologist after a congress meeting. Role: Act as my MSL email communication coach. Action: Give me 3 specific improvements that would increase reply likelihood - tone, clarity, or relevance - and explain why. Format: Bullet dots with improvement and short rationale. Tone: constructive, specific."
+            data-bad="Give me feedback on this.">
+            <span class="scenario-tag">Example 1</span>
+            <h3>Email Coach</h3>
+            <p>Get specific improvements for HCP outreach.</p>
+            <div class="scenario-meta">
+              <span><strong>Audience:</strong> Oncology HCP</span>
+              <span><strong>Output:</strong> 3 improvements</span>
+            </div>
+          </button>
+          <button class="scenario-card" type="button"
+            data-title="Presentation Coach"
+            data-summary="Get coaching on talking points for a KOL meeting."
+            data-audience="Academic KOL"
+            data-goal="Sound more confident and data-driven in your delivery."
+            data-output="Clarity rating + improvements"
+            data-context="Talking points for KOL meeting:\n- Our Phase 3 data showed good results in the primary endpoint\n- The safety profile was acceptable and similar to what we've seen before\n- We think this could be a good option for patients who have failed prior therapy\n- There's some interesting subgroup data I can share\n- Happy to answer any questions you might have about the study"
+            data-good="Context: Preparing talking points for a meeting with an academic KOL in cardiology. Role: Act as an executive presentation coach. Action: Review these talking points for a KOL meeting. Rate clarity (1-5) and suggest how to sound more confident and data-driven. Format: Clarity rating, then bullet dots with specific improvements. Tone: direct, coaching."
+            data-bad="How can I improve this?">
+            <span class="scenario-tag">Example 2</span>
+            <h3>Presentation Coach</h3>
+            <p>Strengthen talking points for KOL meetings.</p>
+            <div class="scenario-meta">
+              <span><strong>Audience:</strong> Academic KOL</span>
+              <span><strong>Output:</strong> Rating + improvements</span>
+            </div>
+          </button>
+          <button class="scenario-card" type="button"
+            data-title="Executive Presence"
+            data-summary="Get coaching on sounding more confident and demonstrating expertise."
+            data-audience="Internal leadership"
+            data-goal="Identify where you sound uncertain or miss opportunities."
+            data-output="Specific presence feedback"
+            data-context="Draft message to leadership:\nHi team,\nI wanted to give you an update on my territory. Things have been going okay and I've had some good conversations with a few KOLs. I think we might be making progress on the advisory board planning, though I'm still waiting to hear back from a couple of people. I'll try to have more details by next week. Also, I'm not sure if this is the right forum, but I had an idea about how we might approach the upcoming congress differently. Let me know if you'd like to discuss.\nThanks,\nJordan"
+            data-good="Context: Territory update message to Medical Affairs leadership. Role: Coach me on executive presence. Action: Review this message and tell me where I sound uncertain, too wordy, or miss opportunities to demonstrate expertise. Format: Bullet dots with specific issues and how to fix them. Tone: direct, constructive."
+            data-bad="Does this sound professional?">
+            <span class="scenario-tag">Example 3</span>
+            <h3>Executive Presence</h3>
+            <p>Sound more confident with leadership.</p>
+            <div class="scenario-meta">
+              <span><strong>Audience:</strong> Leadership</span>
+              <span><strong>Output:</strong> Presence feedback</span>
+            </div>
+          </button>
+        </div>
+        <div class="scenario-panel">
+          <div class="panel-header">
+            <h3 id="scenario-title"></h3>
+            <p id="scenario-summary"></p>
+          </div>
+          <div class="panel-details">
+            <div><strong>Audience:</strong> <span id="scenario-audience"></span></div>
+            <div><strong>Goal:</strong> <span id="scenario-goal"></span></div>
+            <div><strong>Output:</strong> <span id="scenario-output"></span></div>
+          </div>
+          <label for="context-input">Scenario context (editable)</label>
+          <textarea id="context-input"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Good vs bad prompts</h2>
+        <p>Green prompts include context, role, action, format, and tone. Red prompts are vague.</p>
+      </div>
+      <div class="prompt-compare">
+        <div class="prompt-card bad">
+          <span class="prompt-label bad">Bad prompt</span>
+          <p id="bad-prompt"></p>
+          <button class="btn ghost" id="copy-bad" type="button">Copy bad prompt</button>
+          <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+        </div>
+        <div class="prompt-card good">
+          <span class="prompt-label good">Good prompt</span>
+          <p id="good-prompt"></p>
+          <button class="btn ghost" id="copy-good" type="button">Copy good prompt</button>
+          <p class="prompt-note good">Has: context, role, action, format, tone.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Try it with AI</h2>
+        <p>Use the selected scenario and add a small request if needed.</p>
+      </div>
+      <div class="chat-layout">
+        <div class="chat-controls">
+          <label for="chat-input">Optional request</label>
+          <input id="chat-input" type="text" placeholder="Example: focus on tone and relevance" />
+          <div class="prompt-actions">
+            <button class="btn primary" id="run-venice" type="button">Try with AI</button>
+            <button class="btn ghost" id="copy-prompt" type="button">Copy for your AI tool</button>
+            <button class="btn ghost" id="clear-chat" type="button">Clear chat</button>
+          </div>
+        </div>
+        <div class="chat-panel">
+          <div class="chat-header">Live response</div>
+          <div id="chat-log" class="chat-log"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pro-tips">
+      <div class="section-heading">
+        <h2>Pro tips</h2>
+        <p>Short tactics that improve coaching with GenAI.</p>
+      </div>
+      <div class="tip-grid">
+        <div class="tip-card">
+          <strong>Ask for reasons.</strong>
+          <p>Explanations teach the team how to improve future drafts.</p>
+        </div>
+        <div class="tip-card">
+          <strong>Limit the number of changes.</strong>
+          <p>Three improvements keeps feedback actionable.</p>
+        </div>
+        <div class="tip-card">
+          <strong>Prioritize the goal.</strong>
+          <p>Make the ask and relevance clear to increase reply rates.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

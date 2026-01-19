@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analyze Content</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="superpower" data-superpower="analyze">
+  <div class="page">
+    <nav class="top-nav">
+      <a class="logo" href="index.html">AI Superpowers</a>
+      <div class="nav-links">
+        <a href="craft.html">CRAFT Framework</a>
+        <a href="superpower-ideas.html">Generate Ideas</a>
+        <a href="superpower-analyze.html" class="active">Analyze Content</a>
+        <a href="superpower-generate.html">Generate Content</a>
+        <a href="superpower-feedback.html">Provide Feedback</a>
+      </div>
+    </nav>
+
+    <header class="page-hero">
+      <div>
+        <p class="eyebrow">Superpower 2</p>
+        <h1>Analyze Content</h1>
+        <p class="lead">Use AI as a second set of eyes to spot unclear, long, or low-value sections.</p>
+        <p><strong>How AI does this:</strong> It scans structure and tone to flag ambiguity, missing context, and overlong sections.</p>
+      </div>
+      <div class="hero-panel accent">
+        <picture class="card-icon">
+          <source srcset="assets/icon-analyze.webp" type="image/webp" />
+          <img src="assets/icon-analyze.svg" alt="Analyze content" />
+        </picture>
+        <div>
+          <h2>Core prompt</h2>
+          <p>Review this email and flag where it could be misunderstood, unclear, too long, or low-value for this HCP type. Suggest concise fixes.</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Practice use cases</h2>
+        <p>Pick a scenario to load the context and good prompt automatically.</p>
+      </div>
+      <div class="scenario-layout">
+        <div class="scenario-list">
+          <button class="scenario-card" type="button"
+            data-title="Email Review"
+            data-summary="Review an email for clarity, length, and value to a busy endocrinologist."
+            data-audience="Endocrinology HCPs"
+            data-goal="Flag issues and suggest concise fixes before sending."
+            data-output="Flags with concise fixes"
+            data-context="Draft email:\nHi Dr. Thompson,\nI hope this finds you well. I wanted to follow up on our previous conversation about the new data we discussed. As you may recall, the Phase 3 trial showed some interesting results that I think could be relevant to your practice. The study enrolled patients with Type 2 diabetes and looked at cardiovascular outcomes over 3 years. There were also some subgroup analyses that might be of interest. Would you have time for a call next week to discuss further? I'm flexible on timing and happy to work around your schedule.\nBest regards,\nJordan"
+            data-good="Context: Follow-up email to a busy endocrinologist about Phase 3 diabetes data. Role: Act as an MSL communication reviewer. Action: Review this email and flag where it could be misunderstood, unclear, too long, or low-value for this HCP type. Suggest concise fixes. Format: Bullet dots with issue and fix. Tone: direct, helpful."
+            data-bad="Is this email good?">
+            <span class="scenario-tag">Example 1</span>
+            <h3>Email Review</h3>
+            <p>Flag issues before sending to an HCP.</p>
+            <div class="scenario-meta">
+              <span><strong>Audience:</strong> Endocrinology HCPs</span>
+              <span><strong>Output:</strong> Flags and fixes</span>
+            </div>
+          </button>
+          <button class="scenario-card" type="button"
+            data-title="Data Gaps Analysis"
+            data-summary="Identify potential gaps or questions an HCP might raise about a trial summary."
+            data-audience="Oncology HCPs"
+            data-goal="Anticipate tough questions and prepare responses."
+            data-output="3 potential gaps or questions"
+            data-context="Trial summary for discussion:\nStudy: Phase 3 randomized trial in advanced NSCLC\nN=450 patients, median age 62\nPrimary endpoint: Progression-free survival\nResults: 4.2 month improvement vs standard of care (HR 0.68, p<0.001)\nSafety: Grade 3+ AEs in 34% of patients\nFollow-up: Median 18 months\n\nAudience: Community oncologist with mixed patient population"
+            data-good="Context: Preparing to discuss Phase 3 NSCLC trial data with a community oncologist. Role: Act as a critical HCP reviewing this data. Action: Identify 3 potential gaps or questions an HCP might raise about this trial summary. Consider patient population, endpoints, and follow-up period. Format: Bullet dots with specific concerns. Tone: skeptical but fair."
+            data-bad="Analyze this trial data.">
+            <span class="scenario-tag">Example 2</span>
+            <h3>Data Gaps Analysis</h3>
+            <p>Anticipate HCP questions about trial data.</p>
+            <div class="scenario-meta">
+              <span><strong>Audience:</strong> Oncology HCPs</span>
+              <span><strong>Output:</strong> 3 gaps/questions</span>
+            </div>
+          </button>
+          <button class="scenario-card" type="button"
+            data-title="Competitor Angle"
+            data-summary="Play the role of a competitor MSL to stress-test your data presentation."
+            data-audience="Internal preparation"
+            data-goal="Identify weaknesses before an HCP does."
+            data-output="Competitive challenges"
+            data-context="Your data presentation points:\n- Our therapy showed 22% reduction in hospitalizations\n- Once-daily dosing vs twice-daily for competitor\n- Similar safety profile to standard of care\n- 2-year follow-up data available\n\nCompetitor landscape:\n- Competitor A has longer-term (5-year) data\n- Competitor B has broader label indication\n- Both have established real-world evidence"
+            data-good="Context: Preparing for a KOL meeting where competitive questions may arise. Role: Play the role of a competitor MSL. Action: What weaknesses would you highlight in this data presentation? What questions would challenge our positioning? Format: Bullet dots with specific competitive challenges. Tone: direct, challenging."
+            data-bad="What would a competitor say?">
+            <span class="scenario-tag">Example 3</span>
+            <h3>Competitor Angle</h3>
+            <p>Stress-test your positioning before the meeting.</p>
+            <div class="scenario-meta">
+              <span><strong>Audience:</strong> Internal prep</span>
+              <span><strong>Output:</strong> Competitive challenges</span>
+            </div>
+          </button>
+        </div>
+        <div class="scenario-panel">
+          <div class="panel-header">
+            <h3 id="scenario-title"></h3>
+            <p id="scenario-summary"></p>
+          </div>
+          <div class="panel-details">
+            <div><strong>Audience:</strong> <span id="scenario-audience"></span></div>
+            <div><strong>Goal:</strong> <span id="scenario-goal"></span></div>
+            <div><strong>Output:</strong> <span id="scenario-output"></span></div>
+          </div>
+          <label for="context-input">Scenario context (editable)</label>
+          <textarea id="context-input"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Good vs bad prompts</h2>
+        <p>Green prompts include context, role, action, format, and tone. Red prompts are vague.</p>
+      </div>
+      <div class="prompt-compare">
+        <div class="prompt-card bad">
+          <span class="prompt-label bad">Bad prompt</span>
+          <p id="bad-prompt"></p>
+          <button class="btn ghost" id="copy-bad" type="button">Copy bad prompt</button>
+          <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+        </div>
+        <div class="prompt-card good">
+          <span class="prompt-label good">Good prompt</span>
+          <p id="good-prompt"></p>
+          <button class="btn ghost" id="copy-good" type="button">Copy good prompt</button>
+          <p class="prompt-note good">Has: context, role, action, format, tone.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Try it with AI</h2>
+        <p>Use the selected scenario and add a small request if needed.</p>
+      </div>
+      <div class="chat-layout">
+        <div class="chat-controls">
+          <label for="chat-input">Optional request</label>
+          <input id="chat-input" type="text" placeholder="Example: focus on clarity and compliance" />
+          <div class="prompt-actions">
+            <button class="btn primary" id="run-venice" type="button">Try with AI</button>
+            <button class="btn ghost" id="copy-prompt" type="button">Copy for your AI tool</button>
+            <button class="btn ghost" id="clear-chat" type="button">Clear chat</button>
+          </div>
+        </div>
+        <div class="chat-panel">
+          <div class="chat-header">Live response</div>
+          <div id="chat-log" class="chat-log"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pro-tips">
+      <div class="section-heading">
+        <h2>Pro tips</h2>
+        <p>Short tactics that improve analysis with GenAI.</p>
+      </div>
+      <div class="tip-grid">
+        <div class="tip-card">
+          <strong>Name the failure modes.</strong>
+          <p>Ask for ambiguity, compliance risk, missing context, and low-value lines.</p>
+        </div>
+        <div class="tip-card">
+          <strong>Request fixes, not just critique.</strong>
+          <p>Always ask for concise revisions so output is ready to use.</p>
+        </div>
+        <div class="tip-card">
+          <strong>Keep the audience explicit.</strong>
+          <p>HCP, internal, or leadership changes what is considered clear and valuable.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

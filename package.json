@@ -1,0 +1,19 @@
+{
+  "name": "ai-superpowers-workshop",
+  "version": "1.0.0",
+  "description": "AI Superpowers Workshop for Medical Affairs Training",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "ai",
+    "workshop",
+    "medical-affairs"
+  ],
+  "author": "Patrina Pellett and Vivek Mukhatyar",
+  "license": "MIT"
+}

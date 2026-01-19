@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generate Ideas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="superpower" data-superpower="ideas">
+  <div class="page">
+    <nav class="top-nav">
+      <a class="logo" href="index.html">AI Superpowers</a>
+      <div class="nav-links">
+        <a href="craft.html">CRAFT Framework</a>
+        <a href="superpower-ideas.html" class="active">Generate Ideas</a>
+        <a href="superpower-analyze.html">Analyze Content</a>
+        <a href="superpower-generate.html">Generate Content</a>
+        <a href="superpower-feedback.html">Provide Feedback</a>
+      </div>
+    </nav>
+
+    <header class="page-hero">
+      <div>
+        <p class="eyebrow">Superpower 1</p>
+        <h1>Generate Ideas</h1>
+        <p class="lead">Use AI to produce options fast: subject lines, angles, and agenda themes.</p>
+        <p><strong>How AI does this:</strong> It recombines patterns from similar communications to create diverse options quickly.</p>
+      </div>
+      <div class="hero-panel accent">
+        <picture class="card-icon">
+          <source srcset="assets/icon-ideas.webp" type="image/webp" />
+          <img src="assets/icon-ideas.svg" alt="Generate ideas" />
+        </picture>
+        <div>
+          <h2>Core prompt</h2>
+          <p>Generate 5 subject line options focused on what this HCP cares about most. Make them short, specific, and open-worthy.</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Practice use cases</h2>
+        <p>Pick a scenario to load the context and good prompt automatically.</p>
+      </div>
+      <div class="scenario-layout">
+        <div class="scenario-list">
+          <button class="scenario-card" type="button"
+            data-title="Email Subject Lines"
+            data-summary="Generate subject line options for a follow-up email to an oncologist focused on real-world evidence."
+            data-audience="Oncology KOLs"
+            data-goal="Increase open rates with short, specific, open-worthy subject lines."
+            data-output="5 subject lines under 8 words"
+            data-context="Draft email:\nHi Dr. Martinez,\nFollowing our conversation at ASCO, I wanted to share the updated real-world evidence summary showing outcomes in community practice settings. The data highlight patient selection patterns and treatment sequencing. Would you be open to a 15-minute call to discuss how this applies to your practice?\nBest,\nJordan"
+            data-good="Context: Follow-up email to an oncologist interested in real-world evidence. Role: Act as an MSL communication coach. Action: Generate 5 subject line options focused on what this HCP cares about most. Format: Bullet dots with 5 options under 8 words. Tone: short, specific, open-worthy."
+            data-bad="Give me email subjects.">
+            <span class="scenario-tag">Example 1</span>
+            <h3>Email Subject Lines</h3>
+            <p>Subject lines for oncology follow-up outreach.</p>
+            <div class="scenario-meta">
+              <span><strong>Audience:</strong> Oncology KOLs</span>
+              <span><strong>Output:</strong> 5 subject lines</span>
+            </div>
+          </button>
+          <button class="scenario-card" type="button"
+            data-title="Meeting Talking Points"
+            data-summary="Generate discussion angles for a KOL meeting about Phase 3 data."
+            data-audience="Cardiologists"
+            data-goal="Focus on what a cardiologist would find most valuable."
+            data-output="4 discussion angles"
+            data-context="Meeting brief:\nUpcoming KOL meeting to discuss Phase 3 cardiovascular outcomes data.\nKey findings: 22% reduction in MACE, improved time-to-event curves, consistent safety profile.\nAudience: Academic cardiologist specializing in heart failure.\nGoal: Gather insights on clinical implications and patient selection."
+            data-good="Context: KOL meeting about Phase 3 cardiovascular outcomes data. Role: Act as a Medical Affairs meeting strategist. Action: Generate 4 discussion angles for this meeting. Format: Bullet dots with clear, actionable angles. Tone: strategic, clinically relevant. Focus on what a cardiologist would find most valuable."
+            data-bad="What should I talk about?">
+            <span class="scenario-tag">Example 2</span>
+            <h3>Meeting Talking Points</h3>
+            <p>Discussion angles for Phase 3 data review.</p>
+            <div class="scenario-meta">
+              <span><strong>Audience:</strong> Cardiologists</span>
+              <span><strong>Output:</strong> 4 angles</span>
+            </div>
+          </button>
+          <button class="scenario-card" type="button"
+            data-title="Objection Responses"
+            data-summary="Generate ways to address the objection that trial population doesn't match patient mix."
+            data-audience="Community HCPs"
+            data-goal="Provide data-driven responses to common objections."
+            data-output="3 response approaches"
+            data-context="Common objection:\nHCP says: 'Your trial population doesn't match my patient mix. Most of my patients are older with more comorbidities than your study enrolled.'\n\nRelevant data points:\n- Subgroup analysis available for patients 65+\n- Real-world registry data from community settings\n- Post-hoc analysis on patients with 2+ comorbidities"
+            data-good="Context: Addressing HCP objection about trial population not matching their patient mix. Role: Act as an MSL objection coach. Action: Generate 3 ways to address this objection. Format: Bullet dots with data-driven responses. Tone: confident, empathetic, evidence-based."
+            data-bad="How do I respond to objections?">
+            <span class="scenario-tag">Example 3</span>
+            <h3>Objection Responses</h3>
+            <p>Data-driven responses to patient mix concerns.</p>
+            <div class="scenario-meta">
+              <span><strong>Audience:</strong> Community HCPs</span>
+              <span><strong>Output:</strong> 3 responses</span>
+            </div>
+          </button>
+        </div>
+        <div class="scenario-panel">
+          <div class="panel-header">
+            <h3 id="scenario-title"></h3>
+            <p id="scenario-summary"></p>
+          </div>
+          <div class="panel-details">
+            <div><strong>Audience:</strong> <span id="scenario-audience"></span></div>
+            <div><strong>Goal:</strong> <span id="scenario-goal"></span></div>
+            <div><strong>Output:</strong> <span id="scenario-output"></span></div>
+          </div>
+          <label for="context-input">Scenario context (editable)</label>
+          <textarea id="context-input"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Good vs bad prompts</h2>
+        <p>Green prompts include context, role, action, format, and tone. Red prompts are vague.</p>
+      </div>
+      <div class="prompt-compare">
+        <div class="prompt-card bad">
+          <span class="prompt-label bad">Bad prompt</span>
+          <p id="bad-prompt"></p>
+          <button class="btn ghost" id="copy-bad" type="button">Copy bad prompt</button>
+          <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+        </div>
+        <div class="prompt-card good">
+          <span class="prompt-label good">Good prompt</span>
+          <p id="good-prompt"></p>
+          <button class="btn ghost" id="copy-good" type="button">Copy good prompt</button>
+          <p class="prompt-note good">Has: context, role, action, format, tone.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Try it with AI</h2>
+        <p>Use the selected scenario and add a small request if needed.</p>
+      </div>
+      <div class="chat-layout">
+        <div class="chat-controls">
+          <label for="chat-input">Optional request</label>
+          <input id="chat-input" type="text" placeholder="Example: include 2 options for community cardiologists" />
+          <div class="prompt-actions">
+            <button class="btn primary" id="run-venice" type="button">Try with AI</button>
+            <button class="btn ghost" id="copy-prompt" type="button">Copy for your AI tool</button>
+            <button class="btn ghost" id="clear-chat" type="button">Clear chat</button>
+          </div>
+        </div>
+        <div class="chat-panel">
+          <div class="chat-header">Live response</div>
+          <div id="chat-log" class="chat-log"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pro-tips">
+      <div class="section-heading">
+        <h2>Pro tips</h2>
+        <p>Short tactics that improve idea generation with GenAI.</p>
+      </div>
+      <div class="tip-grid">
+        <div class="tip-card">
+          <strong>Constrain the output.</strong>
+          <p>Ask for a specific count and length so ideas are usable quickly.</p>
+        </div>
+        <div class="tip-card">
+          <strong>Anchor the audience.</strong>
+          <p>State the exact HCP type and what they care about most.</p>
+        </div>
+        <div class="tip-card">
+          <strong>Ask for variety.</strong>
+          <p>Request distinct angles to avoid near-duplicate options.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
