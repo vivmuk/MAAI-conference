@@ -54,6 +54,8 @@ async function handleChat(req, res) {
     try {
       const payload = JSON.parse(body || "{}");
       const prompt = payload.prompt || "";
+      const systemPrompt = payload.systemPrompt || "You are a helpful Medical Affairs AI assistant. Format all responses using short paragraphs and bullet dots (•). Do not use markdown formatting such as headers (#), bold (**), or bullet points (* or -). Keep responses clear, professional, and actionable.";
+
       if (!prompt.trim()) {
         sendJson(res, 400, { error: "Prompt is required." });
         return;
@@ -63,6 +65,11 @@ async function handleChat(req, res) {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 30000);
 
+      const messages = [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: prompt }
+      ];
+
       const response = await fetch("https://api.venice.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
@@ -71,13 +78,13 @@ async function handleChat(req, res) {
         },
         body: JSON.stringify({
           model,
-          messages: [{ role: "user", content: prompt }],
+          messages,
           temperature: 0.7,
-          max_tokens: 450,
+          max_tokens: 1200,
           stream: false,
           venice_parameters: {
             enable_web_search: "off",
-            include_venice_system_prompt: true,
+            include_venice_system_prompt: false,
           },
         }),
         signal: controller.signal,

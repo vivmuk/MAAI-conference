@@ -115,43 +115,56 @@
 
     <section class="section">
       <div class="section-heading">
-        <h2>Good vs bad prompts</h2>
-        <p>Green prompts include context, role, action, format, and tone. Red prompts are vague.</p>
-      </div>
-      <div class="prompt-compare">
-        <div class="prompt-card bad">
-          <span class="prompt-label bad">Bad prompt</span>
-          <p id="bad-prompt"></p>
-          <button class="btn ghost" id="copy-bad" type="button">Copy bad prompt</button>
-          <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
-        </div>
-        <div class="prompt-card good">
-          <span class="prompt-label good">Good prompt</span>
-          <p id="good-prompt"></p>
-          <button class="btn ghost" id="copy-good" type="button">Copy good prompt</button>
-          <p class="prompt-note good">Has: context, role, action, format, tone.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
         <h2>Try it with AI</h2>
-        <p>Use the selected scenario and add a small request if needed.</p>
+        <p>Select a scenario above, then run the prompt or type your own message.</p>
       </div>
-      <div class="chat-layout">
-        <div class="chat-controls">
-          <label for="chat-input">Optional request</label>
-          <input id="chat-input" type="text" placeholder="Example: include 2 options for community cardiologists" />
-          <div class="prompt-actions">
-            <button class="btn primary" id="run-venice" type="button">Try with AI</button>
-            <button class="btn ghost" id="copy-prompt" type="button">Copy for your AI tool</button>
-            <button class="btn ghost" id="clear-chat" type="button">Clear chat</button>
+
+      <div class="ai-chat-container">
+        <div class="ai-chat-messages" id="ai-messages">
+          <div class="ai-empty-state">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            <p>Select a scenario and click "Run Prompt" to try AI</p>
           </div>
         </div>
-        <div class="chat-panel">
-          <div class="chat-header">Live response</div>
-          <div id="chat-log" class="chat-log"></div>
+        <div class="ai-chat-input-area">
+          <div class="ai-input-wrapper">
+            <textarea id="ai-input" placeholder="Add extra instructions or just hit send..." rows="1"></textarea>
+            <button class="ai-send-btn" id="ai-send-btn" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prompt-toggle-section">
+        <button class="prompt-toggle-btn" id="prompt-toggle-btn" type="button">
+          <span>View Good vs Bad Prompts</span>
+          <svg class="toggle-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div class="prompt-expandable" id="prompt-expandable">
+          <div class="prompt-card-compact good">
+            <div class="prompt-card-header">
+              <span class="prompt-label good">Good prompt (CRAFT)</span>
+              <div>
+                <button class="load-prompt-btn" id="load-good-prompt" type="button">Run Prompt</button>
+                <button class="btn ghost" id="copy-good-prompt" type="button" style="margin-left:8px;padding:8px 12px;font-size:0.65rem;">Copy</button>
+              </div>
+            </div>
+            <p id="good-prompt-text"></p>
+          </div>
+          <div class="prompt-card-compact bad">
+            <div class="prompt-card-header">
+              <span class="prompt-label bad">Bad prompt (vague)</span>
+            </div>
+            <p id="bad-prompt-text"></p>
+            <p class="prompt-note bad" style="margin:0;font-size:0.8rem;">Missing: context, role, action specifics, format, tone.</p>
+          </div>
         </div>
       </div>
     </section>
