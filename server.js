@@ -51,6 +51,16 @@ async function handleChat(req, res) {
   });
 
   req.on("end", async () => {
+    let responseStarted = false;
+    
+    // Handle client disconnection
+    req.on("close", () => {
+      if (responseStarted) {
+        // Response already started, can't send error
+        return;
+      }
+    });
+
     try {
       const payload = JSON.parse(body || "{}");
       const prompt = payload.prompt || "";
@@ -58,7 +68,9 @@ async function handleChat(req, res) {
       const systemPrompt = payload.systemPrompt || "You are a helpful Medical Affairs AI assistant. Format all responses using short paragraphs and bullet dots (•). Do not use markdown formatting such as headers (#), bold (**), or bullet points (* or -). Keep responses clear, professional, and actionable.";
 
       if (!prompt.trim()) {
-        sendJson(res, 400, { error: "Prompt is required." });
+        if (!responseStarted) {
+          sendJson(res, 400, { error: "Prompt is required." });
+        }
         return;
       }
 
@@ -96,40 +108,108 @@ async function handleChat(req, res) {
 
       if (!response.ok) {
         const errorText = await response.text();
-        sendJson(res, response.status, { error: errorText || "AI API error." });
+        if (!responseStarted) {
+          sendJson(res, response.status, { error: errorText || "AI API error." });
+        }
         return;
       }
 
       if (useStreaming) {
+        responseStarted = true;
         res.writeHead(200, {
           "Content-Type": "text/event-stream",
           "Cache-Control": "no-cache",
           "Connection": "keep-alive",
+          "Access-Control-Allow-Origin": "*",
         });
 
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
+        let buffer = "";
+        let isAborted = false;
+
+        // Handle client disconnection
+        req.on("close", () => {
+          isAborted = true;
+          controller.abort();
+        });
 
         try {
           while (true) {
+            if (isAborted) break;
+            
             const { done, value } = await reader.read();
-            if (done) break;
-            const chunk = decoder.decode(value, { stream: true });
-            res.write(chunk);
+            if (done) {
+              // Send final [DONE] marker if buffer has content
+              if (buffer.trim()) {
+                const lines = buffer.split("\n");
+                for (const line of lines) {
+                  if (line.trim() && !line.startsWith("data: ")) {
+                    res.write(`data: ${line}\n`);
+                  } else if (line.trim()) {
+                    res.write(line + "\n");
+                  }
+                }
+              }
+              res.write("data: [DONE]\n\n");
+              break;
+            }
+
+            if (isAborted) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            
+            // Process complete lines
+            const lines = buffer.split("\n");
+            buffer = lines.pop() || "";
+
+            for (const line of lines) {
+              if (isAborted) break;
+              if (line.trim()) {
+                // Forward as-is if already has data: prefix, otherwise add it
+                if (line.startsWith("data: ")) {
+                  res.write(line + "\n");
+                } else {
+                  res.write(`data: ${line}\n`);
+                }
+              }
+            }
+            res.write("\n");
+          }
+        } catch (streamError) {
+          // Only send error if connection is still open and not aborted
+          if (!isAborted && !res.destroyed && !res.closed) {
+            try {
+              res.write(`data: {"error": "Stream error: ${streamError.message}"}\n\n`);
+            } catch (e) {
+              // Response already closed, ignore
+            }
           }
         } finally {
-          reader.releaseLock();
-          res.end();
+          try {
+            if (reader) {
+              reader.releaseLock();
+            }
+            if (!isAborted && !res.destroyed && !res.closed) {
+              res.end();
+            }
+          } catch (e) {
+            // Response already closed, ignore
+          }
         }
       } else {
         const data = await response.json();
         const content = data.choices && data.choices[0] && data.choices[0].message
           ? data.choices[0].message.content
           : "";
-        sendJson(res, 200, { content });
+        if (!responseStarted) {
+          sendJson(res, 200, { content });
+        }
       }
     } catch (error) {
-      sendJson(res, 500, { error: "Server error while calling AI." });
+      if (!responseStarted) {
+        sendJson(res, 500, { error: error.message || "Server error while calling AI." });
+      }
     }
   });
 }
