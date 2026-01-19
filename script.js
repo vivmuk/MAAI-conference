@@ -21,6 +21,7 @@ function setupSuperpowerPage() {
 
   let isLoading = false;
   let loadingInterval = null;
+  let currentAbortController = null;
 
   function getSystemPrompt() {
     return "You are a helpful Medical Affairs AI assistant. Format all responses using short paragraphs and bullet dots (•). Do not use markdown formatting such as headers (#), bold (**), or bullet points (* or -). Keep responses clear, professional, and actionable.";
@@ -116,6 +117,12 @@ function setupSuperpowerPage() {
   }
 
   async function sendMessage() {
+    // Cancel any previous request
+    if (currentAbortController) {
+      currentAbortController.abort();
+      currentAbortController = null;
+    }
+
     if (isLoading) return;
 
     const prompt = aiInput ? aiInput.value.trim() : "";
@@ -136,11 +143,15 @@ function setupSuperpowerPage() {
     startLoadingAnimation();
     scrollToChat();
 
+    // Create abort controller for this request
+    currentAbortController = new AbortController();
+
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt, systemPrompt: getSystemPrompt(), stream: true }),
+        signal: currentAbortController.signal,
       });
 
       if (!response.ok) {
@@ -156,9 +167,16 @@ function setupSuperpowerPage() {
       let contentDiv = null;
       let firstChunkReceived = false;
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          // Check if request was aborted
+          if (currentAbortController?.signal.aborted) {
+            reader.cancel();
+            break;
+          }
 
         buffer += decoder.decode(value, { stream: true });
 
@@ -193,20 +211,30 @@ function setupSuperpowerPage() {
             }
           }
         }
+      } finally {
+        try {
+          reader.releaseLock();
+        } catch (e) {
+          // Reader already released
+        }
       }
 
       // If no content was received, show a message
-      if (!firstChunkReceived) {
+      if (!firstChunkReceived && !currentAbortController?.signal.aborted) {
         stopLoadingAnimation();
         addAIMessage("assistant", "No response returned.");
-      } else if (contentDiv) {
+      } else if (contentDiv && !currentAbortController?.signal.aborted) {
         contentDiv.textContent = normalizeResponse(fullContent);
       }
     } catch (error) {
-      stopLoadingAnimation();
-      addAIMessage("assistant", `Error: ${error.message}`);
+      // Don't show error if request was aborted
+      if (error.name !== "AbortError" && !currentAbortController?.signal.aborted) {
+        stopLoadingAnimation();
+        addAIMessage("assistant", `Error: ${error.message}`);
+      }
     } finally {
       isLoading = false;
+      currentAbortController = null;
       if (aiSendBtn) aiSendBtn.disabled = false;
     }
   }
