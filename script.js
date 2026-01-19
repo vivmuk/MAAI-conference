@@ -178,36 +178,37 @@ function setupSuperpowerPage() {
             break;
           }
 
-        buffer += decoder.decode(value, { stream: true });
+          buffer += decoder.decode(value, { stream: true });
 
-        // Process SSE lines
-        const lines = buffer.split("\n");
-        buffer = lines.pop() || "";
+          // Process SSE lines
+          const lines = buffer.split("\n");
+          buffer = lines.pop() || "";
 
-        for (const line of lines) {
-          if (line.startsWith("data: ")) {
-            const data = line.slice(6);
-            if (data === "[DONE]") continue;
+          for (const line of lines) {
+            if (line.startsWith("data: ")) {
+              const data = line.slice(6);
+              if (data === "[DONE]") continue;
 
-            try {
-              const parsed = JSON.parse(data);
-              const chunk = parsed.choices?.[0]?.delta?.content;
-              if (chunk) {
-                // On first actual content, stop loading and create message
-                if (!firstChunkReceived) {
-                  firstChunkReceived = true;
-                  stopLoadingAnimation();
-                  assistantMsg = addAIMessage("assistant", "");
-                  contentDiv = assistantMsg.querySelector(".ai-message-content");
+              try {
+                const parsed = JSON.parse(data);
+                const chunk = parsed.choices?.[0]?.delta?.content;
+                if (chunk) {
+                  // On first actual content, stop loading and create message
+                  if (!firstChunkReceived) {
+                    firstChunkReceived = true;
+                    stopLoadingAnimation();
+                    assistantMsg = addAIMessage("assistant", "");
+                    contentDiv = assistantMsg.querySelector(".ai-message-content");
+                  }
+                  fullContent += chunk;
+                  if (contentDiv) {
+                    contentDiv.textContent = normalizeResponse(fullContent);
+                    aiMessages.scrollTop = aiMessages.scrollHeight;
+                  }
                 }
-                fullContent += chunk;
-                if (contentDiv) {
-                  contentDiv.textContent = normalizeResponse(fullContent);
-                  aiMessages.scrollTop = aiMessages.scrollHeight;
-                }
+              } catch {
+                // Skip non-JSON lines
               }
-            } catch {
-              // Skip non-JSON lines
             }
           }
         }
@@ -240,22 +241,24 @@ function setupSuperpowerPage() {
   }
 
   // Setup accordion behavior
-  accordions.forEach((accordion) => {
-    const header = accordion.querySelector(".scenario-accordion-header");
-    if (header) {
-      header.addEventListener("click", () => {
-        // Close all other accordions
-        accordions.forEach((a) => {
-          if (a !== accordion) a.classList.remove("open");
-        });
-        // Toggle this accordion
-        accordion.classList.toggle("open");
-      });
-    }
-  });
-
-  // Open first accordion by default
   if (accordions.length > 0) {
+    accordions.forEach((accordion) => {
+      const header = accordion.querySelector(".scenario-accordion-header");
+      if (header) {
+        header.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          // Close all other accordions
+          accordions.forEach((a) => {
+            if (a !== accordion) a.classList.remove("open");
+          });
+          // Toggle this accordion
+          accordion.classList.toggle("open");
+        });
+      }
+    });
+
+    // Open first accordion by default
     accordions[0].classList.add("open");
   }
 
@@ -343,6 +346,16 @@ function setupSuperpowerPage() {
   }
 }
 
-if (pageType === "superpower") {
-  setupSuperpowerPage();
+// Wait for DOM to be ready
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    if (pageType === "superpower") {
+      setupSuperpowerPage();
+    }
+  });
+} else {
+  // DOM is already ready
+  if (pageType === "superpower") {
+    setupSuperpowerPage();
+  }
 }
