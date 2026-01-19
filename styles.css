@@ -887,3 +887,239 @@ body[data-superpower="feedback"] {
     height: 44px;
   }
 }
+
+/* New main layout: use cases left, details right */
+.main-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.use-cases-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.details-column {
+  position: sticky;
+  top: 80px;
+}
+
+.details-panel {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  border: 1px solid var(--line);
+}
+
+.panel-section {
+  margin-bottom: 20px;
+}
+
+.panel-section label {
+  margin-top: 0;
+}
+
+.label-hint {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Updated scenario cards with collapse behavior */
+.scenario-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  background: var(--card);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  width: 100%;
+  overflow: hidden;
+}
+
+.scenario-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.scenario-card:hover {
+  border-color: var(--accent);
+}
+
+.scenario-card.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.scenario-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.collapse-icon {
+  transition: transform 0.3s ease;
+  color: var(--muted);
+}
+
+.scenario-card.active .collapse-icon {
+  transform: rotate(180deg);
+}
+
+.scenario-card.collapsed .collapse-icon {
+  transform: rotate(0deg);
+}
+
+.scenario-card .scenario-desc,
+.scenario-card .scenario-meta {
+  transition: all 0.3s ease;
+  max-height: 200px;
+  opacity: 1;
+}
+
+.scenario-card.collapsed .scenario-desc,
+.scenario-card.collapsed .scenario-meta {
+  max-height: 0;
+  opacity: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.scenario-card.collapsed {
+  padding-bottom: 12px;
+}
+
+.scenario-card.collapsed h3 {
+  margin-bottom: 0;
+}
+
+/* Prompts section in details panel */
+.prompts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.prompt-card-inline {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+}
+
+.prompt-card-inline.good {
+  border-color: var(--good);
+  border-left: 4px solid var(--good);
+  background: var(--good-soft);
+}
+
+.prompt-card-inline.bad {
+  border-color: var(--bad);
+  border-left: 4px solid var(--bad);
+  background: var(--bad-soft);
+}
+
+.prompt-card-inline p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.prompt-card-inline .prompt-note {
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+.use-prompt-btn {
+  padding: 8px 16px;
+  font-size: 0.7rem;
+  background: var(--good);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.use-prompt-btn:hover {
+  transform: translateY(-1px);
+  background: #178a42;
+}
+
+/* Disclaimer footer */
+.disclaimer-footer {
+  background: #fef3cd;
+  border-top: 1px solid #ffc107;
+  padding: 16px 7vw;
+  margin-top: 20px;
+}
+
+.disclaimer-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.disclaimer-content svg {
+  flex-shrink: 0;
+  color: #856404;
+  margin-top: 2px;
+}
+
+.disclaimer-content p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #856404;
+  line-height: 1.5;
+}
+
+.disclaimer-content strong {
+  color: #856404;
+}
+
+/* Larger chat input area */
+.ai-input-wrapper textarea {
+  min-height: 60px;
+}
+
+/* Responsive for new layout */
+@media (max-width: 920px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .details-column {
+    position: static;
+  }
+
+  .use-cases-column {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .use-cases-column {
+    grid-template-columns: 1fr;
+  }
+
+  .disclaimer-content {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+}

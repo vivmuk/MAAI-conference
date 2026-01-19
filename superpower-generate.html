@@ -40,11 +40,13 @@
 
     <section class="section">
       <div class="section-heading">
-        <h2>Practice use cases</h2>
-        <p>Pick a scenario to load the context and good prompt automatically.</p>
+        <h2>Practice Scenarios</h2>
+        <p>Click a scenario to load the context and prompts. Click "Use This Prompt" to load it into the chat.</p>
       </div>
-      <div class="scenario-layout">
-        <div class="scenario-list">
+
+      <div class="main-layout">
+        <!-- Left: Collapsible Use Cases -->
+        <div class="use-cases-column">
           <button class="scenario-card" type="button"
             data-title="Email Rewrite"
             data-summary="Rewrite a wordy email to be skimmable with 3 bullets and a one-line ask."
@@ -54,14 +56,20 @@
             data-context="Draft email:\nHi Dr. Chen,\nI hope you're doing well. I wanted to reach out because we recently received some updated data from our cardiovascular outcomes trial that I thought might be of interest given your focus on heart failure patients. The new analysis includes 24-month follow-up data showing sustained benefit in reducing hospitalizations. There's also some interesting subgroup data on patients over 75 that might be relevant to your patient population. I was wondering if you might have some time in the next few weeks to connect for a brief call to discuss these findings and hear your perspective on how they might apply in clinical practice.\nBest,\nJordan"
             data-good="Context: Follow-up email to a cardiologist about CV outcomes data. Role: Act as an MSL communication writer. Action: Rewrite this email to be skimmable: 3 bullets and a one-line ask. Keep it warm, simple, and professional. Under 75 words. Format: Brief greeting, 3 bullet points, one clear ask. Tone: warm, professional, concise."
             data-bad="Make this email better.">
-            <span class="scenario-tag">Example 1</span>
+            <div class="scenario-header">
+              <span class="scenario-tag">Scenario 1</span>
+              <svg class="collapse-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </div>
             <h3>Email Rewrite</h3>
-            <p>Turn a wordy email into 3 bullets.</p>
+            <p class="scenario-desc">Turn a wordy email into 3 bullets and a clear ask.</p>
             <div class="scenario-meta">
               <span><strong>Audience:</strong> Busy HCPs</span>
               <span><strong>Output:</strong> 3 bullets + ask</span>
             </div>
           </button>
+
           <button class="scenario-card" type="button"
             data-title="Meeting Summary"
             data-summary="Create a structured meeting summary with key insights and action items."
@@ -71,14 +79,20 @@
             data-context="Meeting notes (raw):\nMet with Dr. Williams, community oncologist, 30 min call.\nShe asked about the dosing schedule and whether we have data in elderly patients. Mentioned she's seeing more patients fail first-line therapy. Interested in our mechanism of action. Wants to see the poster from ASCO. Said she'd be open to a dinner program if the topic was practical. Asked about patient assistance programs. Follow up in 2 weeks after she reviews the poster."
             data-good="Context: KOL meeting notes that need to be formatted for CRM entry. Role: Act as a Medical Affairs documentation specialist. Action: Create a meeting summary in this format: Key Insights (3 bullets), Action Items (numbered), Follow-up Date. Tone: professional, concise."
             data-bad="Summarize this meeting.">
-            <span class="scenario-tag">Example 2</span>
+            <div class="scenario-header">
+              <span class="scenario-tag">Scenario 2</span>
+              <svg class="collapse-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </div>
             <h3>Meeting Summary</h3>
-            <p>Structure notes for CRM or team sharing.</p>
+            <p class="scenario-desc">Structure notes for CRM or team sharing.</p>
             <div class="scenario-meta">
               <span><strong>Audience:</strong> Internal team</span>
               <span><strong>Output:</strong> Structured summary</span>
             </div>
           </button>
+
           <button class="scenario-card" type="button"
             data-title="Slide Content"
             data-summary="Draft slide titles and bullets for a presentation on efficacy data."
@@ -88,27 +102,47 @@
             data-context="Data to present:\n- Phase 3 trial in metastatic breast cancer\n- Primary endpoint: PFS improved by 5.2 months (HR 0.58)\n- ORR: 62% vs 34% for control\n- Median duration of response: 14 months\n- Most common AEs: fatigue (32%), nausea (28%), neutropenia (24%)\n- Subgroup benefit consistent across age, ECOG status\n\nAudience: Community oncologists at a regional dinner program\nFocus: Practical clinical application"
             data-good="Context: Creating slides for a dinner program with community oncologists on metastatic breast cancer data. Role: Act as a medical presentation writer. Action: Draft 3 slide titles and 3 bullets each for a presentation on this efficacy data. Audience: community oncologists. Focus: practical clinical application. Format: Slide title followed by 3 concise bullets. Tone: clinical, clear, practical."
             data-bad="Write slides about our drug.">
-            <span class="scenario-tag">Example 3</span>
+            <div class="scenario-header">
+              <span class="scenario-tag">Scenario 3</span>
+              <svg class="collapse-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </div>
             <h3>Slide Content</h3>
-            <p>Draft titles and bullets for HCP presentation.</p>
+            <p class="scenario-desc">Draft titles and bullets for HCP presentation.</p>
             <div class="scenario-meta">
               <span><strong>Audience:</strong> Community oncologists</span>
               <span><strong>Output:</strong> 3 slides with bullets</span>
             </div>
           </button>
         </div>
-        <div class="scenario-panel">
-          <div class="panel-header">
-            <h3 id="scenario-title"></h3>
-            <p id="scenario-summary"></p>
+
+        <!-- Right: Context + Prompts Panel -->
+        <div class="details-column">
+          <div class="details-panel">
+            <div class="panel-section">
+              <label for="context-input">Scenario Context <span class="label-hint">(editable)</span></label>
+              <textarea id="context-input" rows="6"></textarea>
+            </div>
+
+            <div class="prompts-section">
+              <div class="prompt-card-inline good">
+                <div class="prompt-card-header">
+                  <span class="prompt-label good">Good Prompt (CRAFT)</span>
+                  <button class="use-prompt-btn" id="use-good-prompt" type="button">Use This Prompt</button>
+                </div>
+                <p id="good-prompt-text"></p>
+              </div>
+
+              <div class="prompt-card-inline bad">
+                <div class="prompt-card-header">
+                  <span class="prompt-label bad">Bad Prompt (vague)</span>
+                </div>
+                <p id="bad-prompt-text"></p>
+                <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+              </div>
+            </div>
           </div>
-          <div class="panel-details">
-            <div><strong>Audience:</strong> <span id="scenario-audience"></span></div>
-            <div><strong>Goal:</strong> <span id="scenario-goal"></span></div>
-            <div><strong>Output:</strong> <span id="scenario-output"></span></div>
-          </div>
-          <label for="context-input">Scenario context (editable)</label>
-          <textarea id="context-input"></textarea>
         </div>
       </div>
     </section>
@@ -116,7 +150,7 @@
     <section class="section">
       <div class="section-heading">
         <h2>Try it with AI</h2>
-        <p>Select a scenario above, then run the prompt or type your own message.</p>
+        <p>Edit the prompt below or write your own, then send to see the AI response.</p>
       </div>
 
       <div class="ai-chat-container">
@@ -125,45 +159,17 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>
-            <p>Select a scenario and click "Run Prompt" to try AI</p>
+            <p>Click "Use This Prompt" above to load a prompt, or type your own below</p>
           </div>
         </div>
         <div class="ai-chat-input-area">
           <div class="ai-input-wrapper">
-            <textarea id="ai-input" placeholder="Add extra instructions or just hit send..." rows="1"></textarea>
+            <textarea id="ai-input" placeholder="Type or paste your prompt here..." rows="3"></textarea>
             <button class="ai-send-btn" id="ai-send-btn" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
               </svg>
             </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="prompt-toggle-section">
-        <button class="prompt-toggle-btn" id="prompt-toggle-btn" type="button">
-          <span>View Good vs Bad Prompts</span>
-          <svg class="toggle-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </button>
-        <div class="prompt-expandable" id="prompt-expandable">
-          <div class="prompt-card-compact good">
-            <div class="prompt-card-header">
-              <span class="prompt-label good">Good prompt (CRAFT)</span>
-              <div>
-                <button class="load-prompt-btn" id="load-good-prompt" type="button">Run Prompt</button>
-                <button class="btn ghost" id="copy-good-prompt" type="button" style="margin-left:8px;padding:8px 12px;font-size:0.65rem;">Copy</button>
-              </div>
-            </div>
-            <p id="good-prompt-text"></p>
-          </div>
-          <div class="prompt-card-compact bad">
-            <div class="prompt-card-header">
-              <span class="prompt-label bad">Bad prompt (vague)</span>
-            </div>
-            <p id="bad-prompt-text"></p>
-            <p class="prompt-note bad" style="margin:0;font-size:0.8rem;">Missing: context, role, action specifics, format, tone.</p>
           </div>
         </div>
       </div>
@@ -189,6 +195,15 @@
         </div>
       </div>
     </section>
+
+    <footer class="disclaimer-footer">
+      <div class="disclaimer-content">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p><strong>Demo Only:</strong> This is for demonstration and training purposes only. AI-generated content must be reviewed for accuracy. Always follow your company's policies and guidelines when using AI tools in your work.</p>
+      </div>
+    </footer>
   </div>
 
   <script src="script.js"></script>
