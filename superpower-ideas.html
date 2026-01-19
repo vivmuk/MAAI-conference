@@ -24,91 +24,130 @@
         <p class="eyebrow">Superpower 1</p>
         <h1>Generate Ideas</h1>
         <p class="lead">Use AI to produce options fast: subject lines, angles, and agenda themes.</p>
-        <p><strong>How AI does this:</strong> It recombines patterns from similar communications to create diverse options quickly.</p>
-      </div>
-      <div class="hero-panel accent">
-        <picture class="card-icon">
-          <source srcset="assets/icon-ideas.webp" type="image/webp" />
-          <img src="assets/icon-ideas.svg" alt="Generate ideas" />
-        </picture>
-        <div>
-          <h2>Core prompt</h2>
-          <p>Generate 5 subject line options focused on what this HCP cares about most. Make them short, specific, and open-worthy.</p>
-        </div>
       </div>
     </header>
 
     <section class="section">
       <div class="section-heading">
-        <h2>Practice use cases</h2>
-        <p>Pick a scenario to load the context and good prompt automatically.</p>
+        <h2>Practice Scenarios</h2>
+        <p>Click a scenario to expand it, then click "Use This Prompt" to load it into the chat.</p>
       </div>
-      <div class="scenario-layout">
-        <div class="scenario-list">
-          <button class="scenario-card" type="button"
-            data-title="Email Subject Lines"
-            data-summary="Generate subject line options for a follow-up email to an oncologist focused on real-world evidence."
-            data-audience="Oncology KOLs"
-            data-goal="Increase open rates with short, specific, open-worthy subject lines."
-            data-output="5 subject lines under 8 words"
-            data-context="Draft email:\nHi Dr. Martinez,\nFollowing our conversation at ASCO, I wanted to share the updated real-world evidence summary showing outcomes in community practice settings. The data highlight patient selection patterns and treatment sequencing. Would you be open to a 15-minute call to discuss how this applies to your practice?\nBest,\nJordan"
-            data-good="Context: Follow-up email to an oncologist interested in real-world evidence. Role: Act as an MSL communication coach. Action: Generate 5 subject line options focused on what this HCP cares about most. Format: Bullet dots with 5 options under 8 words. Tone: short, specific, open-worthy."
-            data-bad="Give me email subjects.">
-            <span class="scenario-tag">Example 1</span>
-            <h3>Email Subject Lines</h3>
-            <p>Subject lines for oncology follow-up outreach.</p>
-            <div class="scenario-meta">
-              <span><strong>Audience:</strong> Oncology KOLs</span>
-              <span><strong>Output:</strong> 5 subject lines</span>
+
+      <div class="scenarios-list">
+        <!-- Scenario 1 -->
+        <div class="scenario-accordion" data-scenario="1">
+          <button class="scenario-accordion-header" type="button">
+            <div class="scenario-header-content">
+              <span class="scenario-tag">Scenario 1</span>
+              <h3>Email Subject Lines</h3>
+              <p>Subject lines for oncology follow-up outreach.</p>
             </div>
+            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
           </button>
-          <button class="scenario-card" type="button"
-            data-title="Meeting Talking Points"
-            data-summary="Generate discussion angles for a KOL meeting about Phase 3 data."
-            data-audience="Cardiologists"
-            data-goal="Focus on what a cardiologist would find most valuable."
-            data-output="4 discussion angles"
-            data-context="Meeting brief:\nUpcoming KOL meeting to discuss Phase 3 cardiovascular outcomes data.\nKey findings: 22% reduction in MACE, improved time-to-event curves, consistent safety profile.\nAudience: Academic cardiologist specializing in heart failure.\nGoal: Gather insights on clinical implications and patient selection."
-            data-good="Context: KOL meeting about Phase 3 cardiovascular outcomes data. Role: Act as a Medical Affairs meeting strategist. Action: Generate 4 discussion angles for this meeting. Format: Bullet dots with clear, actionable angles. Tone: strategic, clinically relevant. Focus on what a cardiologist would find most valuable."
-            data-bad="What should I talk about?">
-            <span class="scenario-tag">Example 2</span>
-            <h3>Meeting Talking Points</h3>
-            <p>Discussion angles for Phase 3 data review.</p>
-            <div class="scenario-meta">
-              <span><strong>Audience:</strong> Cardiologists</span>
-              <span><strong>Output:</strong> 4 angles</span>
+          <div class="scenario-accordion-content">
+            <div class="scenario-context">
+              <label>Context (editable)</label>
+              <textarea class="context-input" rows="6">Draft email:
+Hi Dr. Martinez,
+Following our conversation at ASCO, I wanted to share the updated real-world evidence summary showing outcomes in community practice settings. The data highlight patient selection patterns and treatment sequencing. Would you be open to a 15-minute call to discuss how this applies to your practice?
+Best,
+Jordan</textarea>
             </div>
-          </button>
-          <button class="scenario-card" type="button"
-            data-title="Objection Responses"
-            data-summary="Generate ways to address the objection that trial population doesn't match patient mix."
-            data-audience="Community HCPs"
-            data-goal="Provide data-driven responses to common objections."
-            data-output="3 response approaches"
-            data-context="Common objection:\nHCP says: 'Your trial population doesn't match my patient mix. Most of my patients are older with more comorbidities than your study enrolled.'\n\nRelevant data points:\n- Subgroup analysis available for patients 65+\n- Real-world registry data from community settings\n- Post-hoc analysis on patients with 2+ comorbidities"
-            data-good="Context: Addressing HCP objection about trial population not matching their patient mix. Role: Act as an MSL objection coach. Action: Generate 3 ways to address this objection. Format: Bullet dots with data-driven responses. Tone: confident, empathetic, evidence-based."
-            data-bad="How do I respond to objections?">
-            <span class="scenario-tag">Example 3</span>
-            <h3>Objection Responses</h3>
-            <p>Data-driven responses to patient mix concerns.</p>
-            <div class="scenario-meta">
-              <span><strong>Audience:</strong> Community HCPs</span>
-              <span><strong>Output:</strong> 3 responses</span>
+            <div class="prompt-cards">
+              <div class="prompt-card-inline good">
+                <div class="prompt-card-header">
+                  <span class="prompt-label good">Good Prompt (CRAFT)</span>
+                  <button class="use-prompt-btn" type="button" data-prompt="Context: Follow-up email to an oncologist interested in real-world evidence. Role: Act as an MSL communication coach. Action: Generate 5 subject line options focused on what this HCP cares about most. Format: Bullet dots with 5 options under 8 words. Tone: short, specific, open-worthy.">Use This Prompt</button>
+                </div>
+                <p class="prompt-text">Context: Follow-up email to an oncologist interested in real-world evidence. Role: Act as an MSL communication coach. Action: Generate 5 subject line options focused on what this HCP cares about most. Format: Bullet dots with 5 options under 8 words. Tone: short, specific, open-worthy.</p>
+              </div>
+              <div class="prompt-card-inline bad">
+                <span class="prompt-label bad">Bad Prompt (vague)</span>
+                <p class="prompt-text">"Give me email subjects."</p>
+                <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+              </div>
             </div>
-          </button>
+          </div>
         </div>
-        <div class="scenario-panel">
-          <div class="panel-header">
-            <h3 id="scenario-title"></h3>
-            <p id="scenario-summary"></p>
+
+        <!-- Scenario 2 -->
+        <div class="scenario-accordion" data-scenario="2">
+          <button class="scenario-accordion-header" type="button">
+            <div class="scenario-header-content">
+              <span class="scenario-tag">Scenario 2</span>
+              <h3>Meeting Talking Points</h3>
+              <p>Discussion angles for Phase 3 data review.</p>
+            </div>
+            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="scenario-accordion-content">
+            <div class="scenario-context">
+              <label>Context (editable)</label>
+              <textarea class="context-input" rows="6">Meeting brief:
+Upcoming KOL meeting to discuss Phase 3 cardiovascular outcomes data.
+Key findings: 22% reduction in MACE, improved time-to-event curves, consistent safety profile.
+Audience: Academic cardiologist specializing in heart failure.
+Goal: Gather insights on clinical implications and patient selection.</textarea>
+            </div>
+            <div class="prompt-cards">
+              <div class="prompt-card-inline good">
+                <div class="prompt-card-header">
+                  <span class="prompt-label good">Good Prompt (CRAFT)</span>
+                  <button class="use-prompt-btn" type="button" data-prompt="Context: KOL meeting about Phase 3 cardiovascular outcomes data. Role: Act as a Medical Affairs meeting strategist. Action: Generate 4 discussion angles for this meeting. Format: Bullet dots with clear, actionable angles. Tone: strategic, clinically relevant. Focus on what a cardiologist would find most valuable.">Use This Prompt</button>
+                </div>
+                <p class="prompt-text">Context: KOL meeting about Phase 3 cardiovascular outcomes data. Role: Act as a Medical Affairs meeting strategist. Action: Generate 4 discussion angles for this meeting. Format: Bullet dots with clear, actionable angles. Tone: strategic, clinically relevant. Focus on what a cardiologist would find most valuable.</p>
+              </div>
+              <div class="prompt-card-inline bad">
+                <span class="prompt-label bad">Bad Prompt (vague)</span>
+                <p class="prompt-text">"What should I talk about?"</p>
+                <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+              </div>
+            </div>
           </div>
-          <div class="panel-details">
-            <div><strong>Audience:</strong> <span id="scenario-audience"></span></div>
-            <div><strong>Goal:</strong> <span id="scenario-goal"></span></div>
-            <div><strong>Output:</strong> <span id="scenario-output"></span></div>
+        </div>
+
+        <!-- Scenario 3 -->
+        <div class="scenario-accordion" data-scenario="3">
+          <button class="scenario-accordion-header" type="button">
+            <div class="scenario-header-content">
+              <span class="scenario-tag">Scenario 3</span>
+              <h3>Objection Responses</h3>
+              <p>Data-driven responses to patient mix concerns.</p>
+            </div>
+            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="scenario-accordion-content">
+            <div class="scenario-context">
+              <label>Context (editable)</label>
+              <textarea class="context-input" rows="8">Common objection:
+HCP says: "Your trial population doesn't match my patient mix. Most of my patients are older with more comorbidities than your study enrolled."
+
+Relevant data points:
+- Subgroup analysis available for patients 65+
+- Real-world registry data from community settings
+- Post-hoc analysis on patients with 2+ comorbidities</textarea>
+            </div>
+            <div class="prompt-cards">
+              <div class="prompt-card-inline good">
+                <div class="prompt-card-header">
+                  <span class="prompt-label good">Good Prompt (CRAFT)</span>
+                  <button class="use-prompt-btn" type="button" data-prompt="Context: Addressing HCP objection about trial population not matching their patient mix. Role: Act as an MSL objection coach. Action: Generate 3 ways to address this objection. Format: Bullet dots with data-driven responses. Tone: confident, empathetic, evidence-based.">Use This Prompt</button>
+                </div>
+                <p class="prompt-text">Context: Addressing HCP objection about trial population not matching their patient mix. Role: Act as an MSL objection coach. Action: Generate 3 ways to address this objection. Format: Bullet dots with data-driven responses. Tone: confident, empathetic, evidence-based.</p>
+              </div>
+              <div class="prompt-card-inline bad">
+                <span class="prompt-label bad">Bad Prompt (vague)</span>
+                <p class="prompt-text">"How do I respond to objections?"</p>
+                <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+              </div>
+            </div>
           </div>
-          <label for="context-input">Scenario context (editable)</label>
-          <textarea id="context-input"></textarea>
         </div>
       </div>
     </section>
@@ -116,7 +155,7 @@
     <section class="section">
       <div class="section-heading">
         <h2>Try it with AI</h2>
-        <p>Select a scenario above, then run the prompt or type your own message.</p>
+        <p>Edit the prompt below or write your own, then send to see the AI response.</p>
       </div>
 
       <div class="ai-chat-container">
@@ -125,12 +164,12 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>
-            <p>Select a scenario and click "Run Prompt" to try AI</p>
+            <p>Click "Use This Prompt" above to load a prompt, or type your own below</p>
           </div>
         </div>
         <div class="ai-chat-input-area">
           <div class="ai-input-wrapper">
-            <textarea id="ai-input" placeholder="Add extra instructions or just hit send..." rows="1"></textarea>
+            <textarea id="ai-input" placeholder="Type or paste your prompt here..." rows="3"></textarea>
             <button class="ai-send-btn" id="ai-send-btn" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -139,40 +178,11 @@
           </div>
         </div>
       </div>
-
-      <div class="prompt-toggle-section">
-        <button class="prompt-toggle-btn" id="prompt-toggle-btn" type="button">
-          <span>View Good vs Bad Prompts</span>
-          <svg class="toggle-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </button>
-        <div class="prompt-expandable" id="prompt-expandable">
-          <div class="prompt-card-compact good">
-            <div class="prompt-card-header">
-              <span class="prompt-label good">Good prompt (CRAFT)</span>
-              <div>
-                <button class="load-prompt-btn" id="load-good-prompt" type="button">Run Prompt</button>
-                <button class="btn ghost" id="copy-good-prompt" type="button" style="margin-left:8px;padding:8px 12px;font-size:0.65rem;">Copy</button>
-              </div>
-            </div>
-            <p id="good-prompt-text"></p>
-          </div>
-          <div class="prompt-card-compact bad">
-            <div class="prompt-card-header">
-              <span class="prompt-label bad">Bad prompt (vague)</span>
-            </div>
-            <p id="bad-prompt-text"></p>
-            <p class="prompt-note bad" style="margin:0;font-size:0.8rem;">Missing: context, role, action specifics, format, tone.</p>
-          </div>
-        </div>
-      </div>
     </section>
 
     <section class="section pro-tips">
       <div class="section-heading">
         <h2>Pro tips</h2>
-        <p>Short tactics that improve idea generation with GenAI.</p>
       </div>
       <div class="tip-grid">
         <div class="tip-card">
@@ -189,6 +199,15 @@
         </div>
       </div>
     </section>
+
+    <footer class="disclaimer-footer">
+      <div class="disclaimer-content">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p><strong>Demo Only:</strong> This is for demonstration and training purposes only. AI-generated content must be reviewed for accuracy. Always follow your company's policies and guidelines when using AI tools in your work.</p>
+      </div>
+    </footer>
   </div>
 
   <script src="script.js"></script>

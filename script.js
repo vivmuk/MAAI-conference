@@ -1,10 +1,5 @@
 const pageType = document.body.dataset.page;
 
-function decodeText(value) {
-  if (!value) return "";
-  return value.replace(/\\n/g, "\n");
-}
-
 function normalizeResponse(text) {
   if (!text) return "";
   return text
@@ -15,34 +10,20 @@ function normalizeResponse(text) {
 }
 
 function setupSuperpowerPage() {
-  const scenarioCards = Array.from(document.querySelectorAll(".scenario-card"));
-  const contextInput = document.getElementById("context-input");
-  const goodPromptText = document.getElementById("good-prompt-text");
-  const badPromptText = document.getElementById("bad-prompt-text");
-  const useGoodPrompt = document.getElementById("use-good-prompt");
+  // Accordion elements
+  const accordions = Array.from(document.querySelectorAll(".scenario-accordion"));
+  const usePromptBtns = Array.from(document.querySelectorAll(".use-prompt-btn"));
 
   // ChatGPT-style elements
   const aiMessages = document.getElementById("ai-messages");
   const aiInput = document.getElementById("ai-input");
   const aiSendBtn = document.getElementById("ai-send-btn");
 
-  let activeScenario = null;
   let isLoading = false;
   let loadingInterval = null;
 
   function getSystemPrompt() {
     return "You are a helpful Medical Affairs AI assistant. Format all responses using short paragraphs and bullet dots (•). Do not use markdown formatting such as headers (#), bold (**), or bullet points (* or -). Keep responses clear, professional, and actionable.";
-  }
-
-  function buildPromptFromInput() {
-    // Build prompt from what's in the chat input
-    return aiInput ? aiInput.value.trim() : "";
-  }
-
-  function buildFullPrompt() {
-    const context = contextInput ? contextInput.value.trim() : "";
-    const instruction = activeScenario ? activeScenario.good : "";
-    return `Context:\n${context || "[Add context here]"}\n\nInstruction:\n${instruction}`;
   }
 
   function addAIMessage(role, content, isLoadingMsg = false) {
@@ -116,31 +97,18 @@ function setupSuperpowerPage() {
     }
   }
 
-  function setScenario(card) {
-    scenarioCards.forEach((item) => item.classList.remove("active"));
-    card.classList.add("active");
+  function loadPromptToInput(prompt, contextTextarea) {
+    if (!aiInput) return;
 
-    activeScenario = {
-      title: card.dataset.title,
-      summary: card.dataset.summary,
-      audience: card.dataset.audience,
-      goal: card.dataset.goal,
-      output: card.dataset.output,
-      context: decodeText(card.dataset.context),
-      good: decodeText(card.dataset.good),
-      bad: decodeText(card.dataset.bad),
-    };
+    // Get context from the accordion's textarea
+    const context = contextTextarea ? contextTextarea.value.trim() : "";
 
-    if (contextInput) contextInput.value = activeScenario.context || "";
-    if (goodPromptText) goodPromptText.textContent = activeScenario.good || "";
-    if (badPromptText) badPromptText.textContent = activeScenario.bad || "";
-  }
+    // Combine context and prompt
+    const fullPrompt = context
+      ? `Context:\n${context}\n\nInstruction:\n${prompt}`
+      : prompt;
 
-  function loadPromptToInput() {
-    if (!activeScenario || !aiInput) return;
-    const fullPrompt = buildFullPrompt();
     aiInput.value = fullPrompt;
-    // Auto-resize textarea
     aiInput.style.height = "auto";
     aiInput.style.height = Math.min(aiInput.scrollHeight, 200) + "px";
     aiInput.focus();
@@ -150,13 +118,13 @@ function setupSuperpowerPage() {
   async function sendMessage() {
     if (isLoading) return;
 
-    const prompt = buildPromptFromInput();
-    if (!prompt.trim()) return;
+    const prompt = aiInput ? aiInput.value.trim() : "";
+    if (!prompt) return;
 
     isLoading = true;
     if (aiSendBtn) aiSendBtn.disabled = true;
-    if (aiInput) aiInput.value = "";
     if (aiInput) {
+      aiInput.value = "";
       aiInput.style.height = "auto";
     }
 
@@ -164,10 +132,8 @@ function setupSuperpowerPage() {
     addAIMessage("user", prompt);
 
     // Add loading message
-    const loadingMsg = addAIMessage("assistant", "", true);
+    addAIMessage("assistant", "", true);
     startLoadingAnimation();
-
-    // Scroll to see the loading indicator
     scrollToChat();
 
     try {
@@ -182,20 +148,13 @@ function setupSuperpowerPage() {
         throw new Error(errorData.error || "AI request failed.");
       }
 
-      // Stop loading animation when first chunk arrives
-      stopLoadingAnimation();
-
-      // Create the assistant message element for streaming content
-      const assistantMsg = addAIMessage("assistant", "");
-      const contentDiv = assistantMsg.querySelector(".ai-message-content");
-
-      // Scroll to the new message
-      scrollToChat();
-
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let fullContent = "";
       let buffer = "";
+      let assistantMsg = null;
+      let contentDiv = null;
+      let firstChunkReceived = false;
 
       while (true) {
         const { done, value } = await reader.read();
@@ -216,9 +175,18 @@ function setupSuperpowerPage() {
               const parsed = JSON.parse(data);
               const chunk = parsed.choices?.[0]?.delta?.content;
               if (chunk) {
+                // On first actual content, stop loading and create message
+                if (!firstChunkReceived) {
+                  firstChunkReceived = true;
+                  stopLoadingAnimation();
+                  assistantMsg = addAIMessage("assistant", "");
+                  contentDiv = assistantMsg.querySelector(".ai-message-content");
+                }
                 fullContent += chunk;
-                contentDiv.textContent = normalizeResponse(fullContent);
-                aiMessages.scrollTop = aiMessages.scrollHeight;
+                if (contentDiv) {
+                  contentDiv.textContent = normalizeResponse(fullContent);
+                  aiMessages.scrollTop = aiMessages.scrollHeight;
+                }
               }
             } catch {
               // Skip non-JSON lines
@@ -227,11 +195,12 @@ function setupSuperpowerPage() {
         }
       }
 
-      // Final normalization
-      if (fullContent) {
+      // If no content was received, show a message
+      if (!firstChunkReceived) {
+        stopLoadingAnimation();
+        addAIMessage("assistant", "No response returned.");
+      } else if (contentDiv) {
         contentDiv.textContent = normalizeResponse(fullContent);
-      } else {
-        contentDiv.textContent = "No response returned.";
       }
     } catch (error) {
       stopLoadingAnimation();
@@ -242,31 +211,36 @@ function setupSuperpowerPage() {
     }
   }
 
-  // Initialize scenarios with collapsible behavior
-  if (scenarioCards.length > 0) {
-    scenarioCards.forEach((card) => {
-      card.addEventListener("click", () => {
-        const wasActive = card.classList.contains("active");
-
-        // If clicking the same card, toggle collapse
-        if (wasActive) {
-          card.classList.toggle("collapsed");
-        } else {
-          // Collapse all others, expand this one
-          scenarioCards.forEach((c) => c.classList.add("collapsed"));
-          card.classList.remove("collapsed");
-          setScenario(card);
-        }
+  // Setup accordion behavior
+  accordions.forEach((accordion) => {
+    const header = accordion.querySelector(".scenario-accordion-header");
+    if (header) {
+      header.addEventListener("click", () => {
+        // Close all other accordions
+        accordions.forEach((a) => {
+          if (a !== accordion) a.classList.remove("open");
+        });
+        // Toggle this accordion
+        accordion.classList.toggle("open");
       });
-    });
-    // Set first scenario as active but all start expanded
-    setScenario(scenarioCards[0]);
+    }
+  });
+
+  // Open first accordion by default
+  if (accordions.length > 0) {
+    accordions[0].classList.add("open");
   }
 
-  // Use good prompt button - loads prompt into chat input
-  if (useGoodPrompt) {
-    useGoodPrompt.addEventListener("click", loadPromptToInput);
-  }
+  // Setup "Use This Prompt" buttons
+  usePromptBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const prompt = btn.dataset.prompt;
+      const accordion = btn.closest(".scenario-accordion");
+      const contextTextarea = accordion ? accordion.querySelector(".context-input") : null;
+      loadPromptToInput(prompt, contextTextarea);
+    });
+  });
 
   // Send button
   if (aiSendBtn) {

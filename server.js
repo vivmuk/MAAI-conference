@@ -6,7 +6,7 @@ const { URL } = require("url");
 const PORT = process.env.PORT || 3000;
 const PUBLIC_DIR = __dirname;
 const VENICE_API_KEY = process.env.VENICE_API_KEY;
-const DEFAULT_MODEL = process.env.VENICE_MODEL || "gemini-3-flash-preview";
+const DEFAULT_MODEL = process.env.VENICE_MODEL || "openai-gpt-oss-120b";
 
 const MIME_TYPES = {
   ".html": "text/html",
