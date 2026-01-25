@@ -1135,7 +1135,170 @@ body[data-superpower="feedback"] {
 
 /* Larger chat input area */
 .ai-input-wrapper textarea {
-  min-height: 60px;
+  min-height: 100px;
+  width: 100%;
+}
+
+/* Make the chat container wider */
+.ai-chat-container {
+  max-width: 100%;
+}
+
+/* Single-box scenario layout */
+.scenario-single-box {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.scenario-single-box .scenario-item {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.scenario-single-box .scenario-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.scenario-single-box .scenario-item:first-child {
+  padding-top: 0;
+}
+
+.scenario-single-box .scenario-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.scenario-single-box h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+}
+
+.scenario-single-box .scenario-desc {
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Workshop instructions section on home page */
+.workshop-instructions {
+  background: linear-gradient(135deg, #1a2744 0%, #0f1729 100%);
+  color: white;
+  padding: 40px;
+  border-radius: var(--radius);
+  margin-top: 24px;
+}
+
+.workshop-instructions h2 {
+  color: white;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.workshop-instructions h2 svg {
+  width: 32px;
+  height: 32px;
+}
+
+.workshop-instructions .subtitle {
+  color: #4dd4c4;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.workshop-instructions .instructions-box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(77, 212, 196, 0.3);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.workshop-instructions .instructions-title {
+  color: #4dd4c4;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.workshop-instructions ol {
+  margin: 0;
+  padding-left: 24px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.workshop-instructions ol li {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.workshop-instructions ol li:last-child {
+  margin-bottom: 0;
+}
+
+.time-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.time-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.time-box.practice {
+  border-color: rgba(233, 69, 96, 0.4);
+}
+
+.time-box.share {
+  border-color: rgba(77, 212, 196, 0.4);
+}
+
+.time-box .time-label {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.time-box.practice .time-label {
+  color: #e94560;
+}
+
+.time-box.share .time-label {
+  color: #4dd4c4;
+}
+
+.time-box .time-desc {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .time-boxes {
+    grid-template-columns: 1fr;
+  }
+
+  .workshop-instructions {
+    padding: 24px;
+  }
 }
 
 /* Responsive for new layout */

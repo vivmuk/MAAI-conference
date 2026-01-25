@@ -30,130 +30,103 @@
     <section class="section">
       <div class="section-heading">
         <h2>Practice Scenarios</h2>
-        <p>Click a scenario to expand it, then click "Use This Prompt" to load it into the chat.</p>
+        <p>Select a scenario below to practice. Click "Use This Prompt" to load it into the chat.</p>
       </div>
 
-      <div class="scenarios-list">
+      <div class="scenario-single-box">
         <!-- Scenario 1 -->
-        <div class="scenario-accordion" data-scenario="1">
-          <button class="scenario-accordion-header" type="button">
-            <div class="scenario-header-content">
-              <span class="scenario-tag">Scenario 1</span>
-              <h3>Email Coach</h3>
-              <p>Get specific improvements for HCP outreach.</p>
-            </div>
-            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M6 9l6 6 6-6"/>
-            </svg>
-          </button>
-          <div class="scenario-accordion-content">
-            <div class="scenario-context">
-              <label>Context (editable)</label>
-              <textarea class="context-input" rows="6">Draft email:
+        <div class="scenario-item" data-scenario="1">
+          <span class="scenario-tag">Scenario 1</span>
+          <h3>Email Coach</h3>
+          <p class="scenario-desc">Get specific improvements for HCP outreach.</p>
+          <div class="scenario-context">
+            <label>Context (editable)</label>
+            <textarea class="context-input" rows="6">Draft email:
 Hi Dr. Patel,
 I wanted to follow up on our brief conversation at ASCO. I know you mentioned being interested in seeing more data on our therapy in the second-line setting. I have some materials I could share and would be happy to set up a call to walk you through the key findings. Let me know if you have any availability in the coming weeks.
 Best,
 Jordan</textarea>
-            </div>
-            <div class="prompt-cards">
-              <div class="prompt-card-inline good">
-                <div class="prompt-card-header">
-                  <span class="prompt-label good">Good Prompt (CRAFT)</span>
-                  <div class="prompt-actions">
-                    <button class="use-prompt-btn" type="button" data-prompt="Context: Follow-up email to an oncologist after a congress meeting. Role: Act as my MSL email communication coach. Action: Give me 3 specific improvements that would increase reply likelihood - tone, clarity, or relevance - and explain why. Format: Bullet dots with improvement and short rationale. Tone: constructive, specific.">Use This Prompt</button>
-                    <button class="copy-prompt-btn" type="button" data-prompt="Context: Follow-up email to an oncologist after a congress meeting. Role: Act as my MSL email communication coach. Action: Give me 3 specific improvements that would increase reply likelihood - tone, clarity, or relevance - and explain why. Format: Bullet dots with improvement and short rationale. Tone: constructive, specific.">Copy Prompt</button>
-                  </div>
+          </div>
+          <div class="prompt-cards">
+            <div class="prompt-card-inline good">
+              <div class="prompt-card-header">
+                <span class="prompt-label good">Good Prompt (CRAFT)</span>
+                <div class="prompt-actions">
+                  <button class="use-prompt-btn" type="button" data-prompt="Context: Follow-up email to an oncologist after a congress meeting. Role: Act as my MSL email communication coach. Action: Give me 3 specific improvements that would increase reply likelihood - tone, clarity, or relevance - and explain why. Format: Bullet dots with improvement and short rationale. Tone: constructive, specific.">Use This Prompt</button>
+                  <button class="copy-prompt-btn" type="button" data-prompt="Context: Follow-up email to an oncologist after a congress meeting. Role: Act as my MSL email communication coach. Action: Give me 3 specific improvements that would increase reply likelihood - tone, clarity, or relevance - and explain why. Format: Bullet dots with improvement and short rationale. Tone: constructive, specific.">Copy Prompt</button>
                 </div>
-                <p class="prompt-text">Context: Follow-up email to an oncologist after a congress meeting. Role: Act as my MSL email communication coach. Action: Give me 3 specific improvements that would increase reply likelihood - tone, clarity, or relevance - and explain why. Format: Bullet dots with improvement and short rationale. Tone: constructive, specific.</p>
               </div>
-              <div class="prompt-card-inline bad">
-                <span class="prompt-label bad">Bad Prompt (vague)</span>
-                <p class="prompt-text">"Give me feedback on this."</p>
-                <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
-              </div>
+              <p class="prompt-text">Context: Follow-up email to an oncologist after a congress meeting. Role: Act as my MSL email communication coach. Action: Give me 3 specific improvements that would increase reply likelihood - tone, clarity, or relevance - and explain why. Format: Bullet dots with improvement and short rationale. Tone: constructive, specific.</p>
+            </div>
+            <div class="prompt-card-inline bad">
+              <span class="prompt-label bad">Bad Prompt (vague)</span>
+              <p class="prompt-text">"Give me feedback on this."</p>
+              <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
             </div>
           </div>
         </div>
 
         <!-- Scenario 2 -->
-        <div class="scenario-accordion" data-scenario="2">
-          <button class="scenario-accordion-header" type="button">
-            <div class="scenario-header-content">
-              <span class="scenario-tag">Scenario 2</span>
-              <h3>Presentation Coach</h3>
-              <p>Strengthen talking points for KOL meetings.</p>
-            </div>
-            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M6 9l6 6 6-6"/>
-            </svg>
-          </button>
-          <div class="scenario-accordion-content">
-            <div class="scenario-context">
-              <label>Context (editable)</label>
-              <textarea class="context-input" rows="6">Talking points for KOL meeting:
+        <div class="scenario-item" data-scenario="2">
+          <span class="scenario-tag">Scenario 2</span>
+          <h3>Presentation Coach</h3>
+          <p class="scenario-desc">Strengthen talking points for KOL meetings.</p>
+          <div class="scenario-context">
+            <label>Context (editable)</label>
+            <textarea class="context-input" rows="6">Talking points for KOL meeting:
 - Our Phase 3 data showed good results in the primary endpoint
 - The safety profile was acceptable and similar to what we've seen before
 - We think this could be a good option for patients who have failed prior therapy
 - There's some interesting subgroup data I can share
 - Happy to answer any questions you might have about the study</textarea>
-            </div>
-            <div class="prompt-cards">
-              <div class="prompt-card-inline good">
-                <div class="prompt-card-header">
-                  <span class="prompt-label good">Good Prompt (CRAFT)</span>
-                  <div class="prompt-actions">
-                    <button class="use-prompt-btn" type="button" data-prompt="Context: Preparing talking points for a meeting with an academic KOL in cardiology. Role: Act as an executive presentation coach. Action: Review these talking points for a KOL meeting. Rate clarity (1-5) and suggest how to sound more confident and data-driven. Format: Clarity rating, then bullet dots with specific improvements. Tone: direct, coaching.">Use This Prompt</button>
-                    <button class="copy-prompt-btn" type="button" data-prompt="Context: Preparing talking points for a meeting with an academic KOL in cardiology. Role: Act as an executive presentation coach. Action: Review these talking points for a KOL meeting. Rate clarity (1-5) and suggest how to sound more confident and data-driven. Format: Clarity rating, then bullet dots with specific improvements. Tone: direct, coaching.">Copy Prompt</button>
-                  </div>
+          </div>
+          <div class="prompt-cards">
+            <div class="prompt-card-inline good">
+              <div class="prompt-card-header">
+                <span class="prompt-label good">Good Prompt (CRAFT)</span>
+                <div class="prompt-actions">
+                  <button class="use-prompt-btn" type="button" data-prompt="Context: Preparing talking points for a meeting with an academic KOL in cardiology. Role: Act as an executive presentation coach. Action: Review these talking points for a KOL meeting. Rate clarity (1-5) and suggest how to sound more confident and data-driven. Format: Clarity rating, then bullet dots with specific improvements. Tone: direct, coaching.">Use This Prompt</button>
+                  <button class="copy-prompt-btn" type="button" data-prompt="Context: Preparing talking points for a meeting with an academic KOL in cardiology. Role: Act as an executive presentation coach. Action: Review these talking points for a KOL meeting. Rate clarity (1-5) and suggest how to sound more confident and data-driven. Format: Clarity rating, then bullet dots with specific improvements. Tone: direct, coaching.">Copy Prompt</button>
                 </div>
-                <p class="prompt-text">Context: Preparing talking points for a meeting with an academic KOL in cardiology. Role: Act as an executive presentation coach. Action: Review these talking points for a KOL meeting. Rate clarity (1-5) and suggest how to sound more confident and data-driven. Format: Clarity rating, then bullet dots with specific improvements. Tone: direct, coaching.</p>
               </div>
-              <div class="prompt-card-inline bad">
-                <span class="prompt-label bad">Bad Prompt (vague)</span>
-                <p class="prompt-text">"How can I improve this?"</p>
-                <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
-              </div>
+              <p class="prompt-text">Context: Preparing talking points for a meeting with an academic KOL in cardiology. Role: Act as an executive presentation coach. Action: Review these talking points for a KOL meeting. Rate clarity (1-5) and suggest how to sound more confident and data-driven. Format: Clarity rating, then bullet dots with specific improvements. Tone: direct, coaching.</p>
+            </div>
+            <div class="prompt-card-inline bad">
+              <span class="prompt-label bad">Bad Prompt (vague)</span>
+              <p class="prompt-text">"How can I improve this?"</p>
+              <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
             </div>
           </div>
         </div>
 
         <!-- Scenario 3 -->
-        <div class="scenario-accordion" data-scenario="3">
-          <button class="scenario-accordion-header" type="button">
-            <div class="scenario-header-content">
-              <span class="scenario-tag">Scenario 3</span>
-              <h3>Executive Presence</h3>
-              <p>Sound more confident with leadership.</p>
-            </div>
-            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M6 9l6 6 6-6"/>
-            </svg>
-          </button>
-          <div class="scenario-accordion-content">
-            <div class="scenario-context">
-              <label>Context (editable)</label>
-              <textarea class="context-input" rows="8">Draft message to leadership:
+        <div class="scenario-item" data-scenario="3">
+          <span class="scenario-tag">Scenario 3</span>
+          <h3>Executive Presence</h3>
+          <p class="scenario-desc">Sound more confident with leadership.</p>
+          <div class="scenario-context">
+            <label>Context (editable)</label>
+            <textarea class="context-input" rows="8">Draft message to leadership:
 Hi team,
 I wanted to give you an update on my territory. Things have been going okay and I've had some good conversations with a few KOLs. I think we might be making progress on the advisory board planning, though I'm still waiting to hear back from a couple of people. I'll try to have more details by next week. Also, I'm not sure if this is the right forum, but I had an idea about how we might approach the upcoming congress differently. Let me know if you'd like to discuss.
 Thanks,
 Jordan</textarea>
-            </div>
-            <div class="prompt-cards">
-              <div class="prompt-card-inline good">
-                <div class="prompt-card-header">
-                  <span class="prompt-label good">Good Prompt (CRAFT)</span>
-                  <div class="prompt-actions">
-                    <button class="use-prompt-btn" type="button" data-prompt="Context: Territory update message to Medical Affairs leadership. Role: Coach me on executive presence. Action: Review this message and tell me where I sound uncertain, too wordy, or miss opportunities to demonstrate expertise. Format: Bullet dots with specific issues and how to fix them. Tone: direct, constructive.">Use This Prompt</button>
-                    <button class="copy-prompt-btn" type="button" data-prompt="Context: Territory update message to Medical Affairs leadership. Role: Coach me on executive presence. Action: Review this message and tell me where I sound uncertain, too wordy, or miss opportunities to demonstrate expertise. Format: Bullet dots with specific issues and how to fix them. Tone: direct, constructive.">Copy Prompt</button>
-                  </div>
+          </div>
+          <div class="prompt-cards">
+            <div class="prompt-card-inline good">
+              <div class="prompt-card-header">
+                <span class="prompt-label good">Good Prompt (CRAFT)</span>
+                <div class="prompt-actions">
+                  <button class="use-prompt-btn" type="button" data-prompt="Context: Territory update message to Medical Affairs leadership. Role: Coach me on executive presence. Action: Review this message and tell me where I sound uncertain, too wordy, or miss opportunities to demonstrate expertise. Format: Bullet dots with specific issues and how to fix them. Tone: direct, constructive.">Use This Prompt</button>
+                  <button class="copy-prompt-btn" type="button" data-prompt="Context: Territory update message to Medical Affairs leadership. Role: Coach me on executive presence. Action: Review this message and tell me where I sound uncertain, too wordy, or miss opportunities to demonstrate expertise. Format: Bullet dots with specific issues and how to fix them. Tone: direct, constructive.">Copy Prompt</button>
                 </div>
-                <p class="prompt-text">Context: Territory update message to Medical Affairs leadership. Role: Coach me on executive presence. Action: Review this message and tell me where I sound uncertain, too wordy, or miss opportunities to demonstrate expertise. Format: Bullet dots with specific issues and how to fix them. Tone: direct, constructive.</p>
               </div>
-              <div class="prompt-card-inline bad">
-                <span class="prompt-label bad">Bad Prompt (vague)</span>
-                <p class="prompt-text">"Does this sound professional?"</p>
-                <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
-              </div>
+              <p class="prompt-text">Context: Territory update message to Medical Affairs leadership. Role: Coach me on executive presence. Action: Review this message and tell me where I sound uncertain, too wordy, or miss opportunities to demonstrate expertise. Format: Bullet dots with specific issues and how to fix them. Tone: direct, constructive.</p>
+            </div>
+            <div class="prompt-card-inline bad">
+              <span class="prompt-label bad">Bad Prompt (vague)</span>
+              <p class="prompt-text">"Does this sound professional?"</p>
+              <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
             </div>
           </div>
         </div>

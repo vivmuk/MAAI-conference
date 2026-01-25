@@ -15,5 +15,8 @@
     "medical-affairs"
   ],
   "author": "Patrina Pellett and Vivek Mukhatyar",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
 }

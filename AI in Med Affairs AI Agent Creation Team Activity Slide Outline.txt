@@ -1,0 +1,222 @@
+﻿AI in Med Affairs AI Agent Creation Team Activity Slide Outline
+
+
+
+
+Agent Creation Team Activity
+________________
+
+
+Slide 1 — Title & Framing (0–3 min)
+From Prompts to Agents
+ Designing Practical AI Workflows for Medical Affairs
+* Build once → reuse often
+
+* Less prompting. More leverage.
+
+________________
+
+
+Slide 2 — What You’ll Walk Out With (3–6 min)
+By the end of this session, you will:
+   * Know when to use a prompt vs an agent
+
+   * Understand the building blocks of agents
+
+   * Build at least 2 agents
+
+   * Team activity: build your own agent + Shark Tank pitch to win all the glory
+
+________________
+
+
+Slide 3 — Agent in a Box: Build Your First Agent (6–21 min)
+👉 Hands-on, guided
+Your Task (Work in Small Teams)
+      1. Create a new agent in your AI tool
+(ChatGPT, Copilot, or similar)
+
+      2. In the agent setup/config screen, fill in each section
+
+         * Use the content we build together
+
+         * If your tool doesn’t have a section (e.g., conversation starters), skip it
+
+            3. Save your agent
+
+            4. Test it on a real example, then tweak the instructions as needed
+
+Live example: Subject Line Pro
+(Facilitator builds live while teams follow.)
+________________
+
+
+Slide 4 — Why This Is an Agent (21–23 min) ⏱ 
+This works because it:
+               * Solves the same job repeatedly
+
+               * Uses fixed instructions
+
+               * Produces a consistent output
+
+               * Saves time every use
+
+________________
+
+
+Slide 5 — Prompt vs Agent (23–26 min) ⏱ 
+Prompt
+                  * One-off thinking
+
+                  * Exploration
+
+                  * Output varies
+
+Agent
+                     * Repeating workflow
+
+                     * Defined steps
+
+                     * Same output every time
+
+Rule:
+ If you’ll reuse it → it’s a candidate for an agent.
+________________
+
+
+Slide 6 — Slido: Is This an Agent or Not? (26–30 min)
+Audience quiz
+Show 3–4 examples:
+                        * “Summarize this paper”
+
+                        * “Generate KOL visit briefs every month”
+
+                        * “Brainstorm discussion questions”
+
+                        * “Flag objections for every slide deck”
+
+Participants vote:
+                           * Prompt
+
+                           * Agent
+
+(Facilitator explains answers quickly.)
+________________
+
+
+Slide 7 — What Is an Agent? (30–33 min) ⏱ 
+An agent is an AI that:
+                              * Has a job
+
+                              * Follows reusable instructions
+
+                              * Produces structured outputs
+
+                              * Can use tools and memory
+
+________________
+
+
+Slide 8 — Chatbot vs Agent (33–38 min) ⏱ 
+Chatbot versus an Agent
+Dimension
+	Chatbot
+	Agent
+	Primary role
+	Conversation
+	Task completion
+	Autonomy
+	None
+	Partial → full
+	Acts without user prompt
+	❌
+	✅
+	Has goals
+	❌
+	✅
+	Planning
+	❌
+	✅
+	Tool orchestration
+	Limited
+	Core capability
+	Memory/state
+	Short-term
+	Persistent
+	Handles failures
+	Minimal
+	Retries, recovery
+	Executes workflows
+	❌
+	✅
+	Example output
+	“Here is how to…”
+	Actually does it
+	
+
+________________
+
+
+Slide 9 — Quick Start: The CRAFT Framework (38–43 min)
+Use this for every prompt or agent
+                                 * C — Context: background info
+
+                                 * R — Role: AI persona
+
+                                 * A — Action: what it must do
+
+                                 * F — Format: output structure
+
+                                 * T — Tone: style / voice
+
+________________
+
+
+Slide 10 — Team Build Instructions (43–70 min)
+👉 One instruction slide
+Your Challenge: Build One Focused Agent
+Step 1: Pick & narrow a workflow (10 min)
+                                    * Choose a domain
+
+                                    * List steps
+
+                                    * Select 1–2 steps only
+
+Step 2: Define & build the agent (20 min)
+                                       * User + recurring job
+
+                                       * Inputs & outputs
+
+                                       * Constraints
+
+                                       * Build using CRAFT
+
+Step 3: Test & refine (10 min)
+                                          * Run 2–3 real scenarios
+
+                                          * Identify failures or overreach
+
+Step 4: Prepare your pitch (10 min)
+                                             * Problem + user
+
+                                             * Agent (name, inputs, outputs)
+
+                                             * Demo summary
+
+                                             * Impact
+
+________________
+
+
+Slide 11 — Shark Tank Pitches (70–90 min)
+Format
+                                                * 4-minute pitch
+
+                                                * 2-minute feedback
+
+Judging
+                                                   * Problem clarity
+                                                   * Scope & feasibility
+                                                   * Agent design
+                                                   * User value
+                                                   * Storytelling
