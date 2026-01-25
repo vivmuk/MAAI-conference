@@ -1144,6 +1144,11 @@ body[data-superpower="feedback"] {
   max-width: 100%;
 }
 
+/* Themed border for AI chat on superpower pages */
+body[data-page="superpower"] .ai-chat-container {
+  border: 2px solid var(--accent);
+}
+
 /* Single-box scenario layout */
 .scenario-single-box {
   background: var(--card);

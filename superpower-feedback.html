@@ -16,6 +16,7 @@
         <a href="superpower-analyze.html">Analyze Content</a>
         <a href="superpower-generate.html">Generate Content</a>
         <a href="superpower-feedback.html" class="active">Provide Feedback</a>
+        <a href="workshop.html">Workshop</a>
       </div>
     </nav>
 
@@ -33,13 +34,21 @@
         <p>Select a scenario below to practice. Click "Use This Prompt" to load it into the chat.</p>
       </div>
 
-      <div class="scenario-single-box">
+      <div class="scenarios-list">
         <!-- Scenario 1 -->
-        <div class="scenario-item" data-scenario="1">
-          <span class="scenario-tag">Scenario 1</span>
-          <h3>Email Coach</h3>
-          <p class="scenario-desc">Get specific improvements for HCP outreach.</p>
-          <div class="scenario-context">
+        <div class="scenario-accordion" data-scenario="1">
+          <button class="scenario-accordion-header" type="button">
+            <div class="scenario-header-content">
+              <span class="scenario-tag">Scenario 1</span>
+              <h3>Email Coach</h3>
+              <p>Get specific improvements for HCP outreach.</p>
+            </div>
+            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="scenario-accordion-content">
+            <div class="scenario-context">
             <label>Context (editable)</label>
             <textarea class="context-input" rows="6">Draft email:
 Hi Dr. Patel,
@@ -64,14 +73,23 @@ Jordan</textarea>
               <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
             </div>
           </div>
+          </div>
         </div>
 
         <!-- Scenario 2 -->
-        <div class="scenario-item" data-scenario="2">
-          <span class="scenario-tag">Scenario 2</span>
-          <h3>Presentation Coach</h3>
-          <p class="scenario-desc">Strengthen talking points for KOL meetings.</p>
-          <div class="scenario-context">
+        <div class="scenario-accordion" data-scenario="2">
+          <button class="scenario-accordion-header" type="button">
+            <div class="scenario-header-content">
+              <span class="scenario-tag">Scenario 2</span>
+              <h3>Presentation Coach</h3>
+              <p>Strengthen talking points for KOL meetings.</p>
+            </div>
+            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="scenario-accordion-content">
+            <div class="scenario-context">
             <label>Context (editable)</label>
             <textarea class="context-input" rows="6">Talking points for KOL meeting:
 - Our Phase 3 data showed good results in the primary endpoint
@@ -97,14 +115,23 @@ Jordan</textarea>
               <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
             </div>
           </div>
+          </div>
         </div>
 
         <!-- Scenario 3 -->
-        <div class="scenario-item" data-scenario="3">
-          <span class="scenario-tag">Scenario 3</span>
-          <h3>Executive Presence</h3>
-          <p class="scenario-desc">Sound more confident with leadership.</p>
-          <div class="scenario-context">
+        <div class="scenario-accordion" data-scenario="3">
+          <button class="scenario-accordion-header" type="button">
+            <div class="scenario-header-content">
+              <span class="scenario-tag">Scenario 3</span>
+              <h3>Executive Presence</h3>
+              <p>Sound more confident with leadership.</p>
+            </div>
+            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="scenario-accordion-content">
+            <div class="scenario-context">
             <label>Context (editable)</label>
             <textarea class="context-input" rows="8">Draft message to leadership:
 Hi team,
@@ -128,6 +155,7 @@ Jordan</textarea>
               <p class="prompt-text">"Does this sound professional?"</p>
               <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
             </div>
+          </div>
           </div>
         </div>
       </div>

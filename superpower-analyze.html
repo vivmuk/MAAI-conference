@@ -16,6 +16,7 @@
         <a href="superpower-analyze.html" class="active">Analyze Content</a>
         <a href="superpower-generate.html">Generate Content</a>
         <a href="superpower-feedback.html">Provide Feedback</a>
+        <a href="workshop.html">Workshop</a>
       </div>
     </nav>
 
@@ -30,50 +31,67 @@
     <section class="section">
       <div class="section-heading">
         <h2>Practice Scenarios</h2>
-        <p>Select a scenario below to practice. Click "Use This Prompt" to load it into the chat.</p>
+        <p>Click a scenario to expand it, then click "Use This Prompt" to load it into the chat.</p>
       </div>
 
-      <div class="scenario-single-box">
+      <div class="scenarios-list">
         <!-- Scenario 1 -->
-        <div class="scenario-item" data-scenario="1">
-          <span class="scenario-tag">Scenario 1</span>
-          <h3>Email Review</h3>
-          <p class="scenario-desc">Flag issues before sending to an HCP.</p>
-          <div class="scenario-context">
-            <label>Context (editable)</label>
-            <textarea class="context-input" rows="6">Draft email:
+        <div class="scenario-accordion" data-scenario="1">
+          <button class="scenario-accordion-header" type="button">
+            <div class="scenario-header-content">
+              <span class="scenario-tag">Scenario 1</span>
+              <h3>Email Review</h3>
+              <p>Flag issues before sending to an HCP.</p>
+            </div>
+            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="scenario-accordion-content">
+            <div class="scenario-context">
+              <label>Context (editable)</label>
+              <textarea class="context-input" rows="6">Draft email:
 Hi Dr. Thompson,
 I hope this finds you well. I wanted to follow up on our previous conversation about the new data we discussed. As you may recall, the Phase 3 trial showed some interesting results that I think could be relevant to your practice. The study enrolled patients with Type 2 diabetes and looked at cardiovascular outcomes over 3 years. There were also some subgroup analyses that might be of interest. Would you have time for a call next week to discuss further? I'm flexible on timing and happy to work around your schedule.
 Best regards,
 Jordan</textarea>
-          </div>
-          <div class="prompt-cards">
-            <div class="prompt-card-inline good">
-              <div class="prompt-card-header">
-                <span class="prompt-label good">Good Prompt (CRAFT)</span>
-                <div class="prompt-actions">
-                  <button class="use-prompt-btn" type="button" data-prompt="Context: Follow-up email to a busy endocrinologist about Phase 3 diabetes data. Role: Act as an MSL communication reviewer. Action: Review this email and flag where it could be misunderstood, unclear, too long, or low-value for this HCP type. Suggest concise fixes. Format: Bullet dots with issue and fix. Tone: direct, helpful.">Use This Prompt</button>
-                  <button class="copy-prompt-btn" type="button" data-prompt="Context: Follow-up email to a busy endocrinologist about Phase 3 diabetes data. Role: Act as an MSL communication reviewer. Action: Review this email and flag where it could be misunderstood, unclear, too long, or low-value for this HCP type. Suggest concise fixes. Format: Bullet dots with issue and fix. Tone: direct, helpful.">Copy Prompt</button>
-                </div>
-              </div>
-              <p class="prompt-text">Context: Follow-up email to a busy endocrinologist about Phase 3 diabetes data. Role: Act as an MSL communication reviewer. Action: Review this email and flag where it could be misunderstood, unclear, too long, or low-value for this HCP type. Suggest concise fixes. Format: Bullet dots with issue and fix. Tone: direct, helpful.</p>
             </div>
-            <div class="prompt-card-inline bad">
-              <span class="prompt-label bad">Bad Prompt (vague)</span>
-              <p class="prompt-text">"Is this email good?"</p>
-              <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+            <div class="prompt-cards">
+              <div class="prompt-card-inline good">
+                <div class="prompt-card-header">
+                  <span class="prompt-label good">Good Prompt (CRAFT)</span>
+                  <div class="prompt-actions">
+                    <button class="use-prompt-btn" type="button" data-prompt="Context: Follow-up email to a busy endocrinologist about Phase 3 diabetes data. Role: Act as an MSL communication reviewer. Action: Review this email and flag where it could be misunderstood, unclear, too long, or low-value for this HCP type. Suggest concise fixes. Format: Bullet dots with issue and fix. Tone: direct, helpful.">Use This Prompt</button>
+                    <button class="copy-prompt-btn" type="button" data-prompt="Context: Follow-up email to a busy endocrinologist about Phase 3 diabetes data. Role: Act as an MSL communication reviewer. Action: Review this email and flag where it could be misunderstood, unclear, too long, or low-value for this HCP type. Suggest concise fixes. Format: Bullet dots with issue and fix. Tone: direct, helpful.">Copy Prompt</button>
+                  </div>
+                </div>
+                <p class="prompt-text">Context: Follow-up email to a busy endocrinologist about Phase 3 diabetes data. Role: Act as an MSL communication reviewer. Action: Review this email and flag where it could be misunderstood, unclear, too long, or low-value for this HCP type. Suggest concise fixes. Format: Bullet dots with issue and fix. Tone: direct, helpful.</p>
+              </div>
+              <div class="prompt-card-inline bad">
+                <span class="prompt-label bad">Bad Prompt (vague)</span>
+                <p class="prompt-text">"Is this email good?"</p>
+                <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Scenario 2 -->
-        <div class="scenario-item" data-scenario="2">
-          <span class="scenario-tag">Scenario 2</span>
-          <h3>Data Gaps Analysis</h3>
-          <p class="scenario-desc">Anticipate HCP questions about trial data.</p>
-          <div class="scenario-context">
-            <label>Context (editable)</label>
-            <textarea class="context-input" rows="6">Trial summary for discussion:
+        <div class="scenario-accordion" data-scenario="2">
+          <button class="scenario-accordion-header" type="button">
+            <div class="scenario-header-content">
+              <span class="scenario-tag">Scenario 2</span>
+              <h3>Data Gaps Analysis</h3>
+              <p>Anticipate HCP questions about trial data.</p>
+            </div>
+            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="scenario-accordion-content">
+            <div class="scenario-context">
+              <label>Context (editable)</label>
+              <textarea class="context-input" rows="6">Trial summary for discussion:
 Study: Phase 3 randomized trial in advanced NSCLC
 N=450 patients, median age 62
 Primary endpoint: Progression-free survival
@@ -82,34 +100,43 @@ Safety: Grade 3+ AEs in 34% of patients
 Follow-up: Median 18 months
 
 Audience: Community oncologist with mixed patient population</textarea>
-          </div>
-          <div class="prompt-cards">
-            <div class="prompt-card-inline good">
-              <div class="prompt-card-header">
-                <span class="prompt-label good">Good Prompt (CRAFT)</span>
-                <div class="prompt-actions">
-                  <button class="use-prompt-btn" type="button" data-prompt="Context: Preparing to discuss Phase 3 NSCLC trial data with a community oncologist. Role: Act as a critical HCP reviewing this data. Action: Identify 3 potential gaps or questions an HCP might raise about this trial summary. Consider patient population, endpoints, and follow-up period. Format: Bullet dots with specific concerns. Tone: skeptical but fair.">Use This Prompt</button>
-                  <button class="copy-prompt-btn" type="button" data-prompt="Context: Preparing to discuss Phase 3 NSCLC trial data with a community oncologist. Role: Act as a critical HCP reviewing this data. Action: Identify 3 potential gaps or questions an HCP might raise about this trial summary. Consider patient population, endpoints, and follow-up period. Format: Bullet dots with specific concerns. Tone: skeptical but fair.">Copy Prompt</button>
-                </div>
-              </div>
-              <p class="prompt-text">Context: Preparing to discuss Phase 3 NSCLC trial data with a community oncologist. Role: Act as a critical HCP reviewing this data. Action: Identify 3 potential gaps or questions an HCP might raise about this trial summary. Consider patient population, endpoints, and follow-up period. Format: Bullet dots with specific concerns. Tone: skeptical but fair.</p>
             </div>
-            <div class="prompt-card-inline bad">
-              <span class="prompt-label bad">Bad Prompt (vague)</span>
-              <p class="prompt-text">"Analyze this trial data."</p>
-              <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+            <div class="prompt-cards">
+              <div class="prompt-card-inline good">
+                <div class="prompt-card-header">
+                  <span class="prompt-label good">Good Prompt (CRAFT)</span>
+                  <div class="prompt-actions">
+                    <button class="use-prompt-btn" type="button" data-prompt="Context: Preparing to discuss Phase 3 NSCLC trial data with a community oncologist. Role: Act as a critical HCP reviewing this data. Action: Identify 3 potential gaps or questions an HCP might raise about this trial summary. Consider patient population, endpoints, and follow-up period. Format: Bullet dots with specific concerns. Tone: skeptical but fair.">Use This Prompt</button>
+                    <button class="copy-prompt-btn" type="button" data-prompt="Context: Preparing to discuss Phase 3 NSCLC trial data with a community oncologist. Role: Act as a critical HCP reviewing this data. Action: Identify 3 potential gaps or questions an HCP might raise about this trial summary. Consider patient population, endpoints, and follow-up period. Format: Bullet dots with specific concerns. Tone: skeptical but fair.">Copy Prompt</button>
+                  </div>
+                </div>
+                <p class="prompt-text">Context: Preparing to discuss Phase 3 NSCLC trial data with a community oncologist. Role: Act as a critical HCP reviewing this data. Action: Identify 3 potential gaps or questions an HCP might raise about this trial summary. Consider patient population, endpoints, and follow-up period. Format: Bullet dots with specific concerns. Tone: skeptical but fair.</p>
+              </div>
+              <div class="prompt-card-inline bad">
+                <span class="prompt-label bad">Bad Prompt (vague)</span>
+                <p class="prompt-text">"Analyze this trial data."</p>
+                <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Scenario 3 -->
-        <div class="scenario-item" data-scenario="3">
-          <span class="scenario-tag">Scenario 3</span>
-          <h3>Competitor Angle</h3>
-          <p class="scenario-desc">Stress-test your positioning before the meeting.</p>
-          <div class="scenario-context">
-            <label>Context (editable)</label>
-            <textarea class="context-input" rows="8">Your data presentation points:
+        <div class="scenario-accordion" data-scenario="3">
+          <button class="scenario-accordion-header" type="button">
+            <div class="scenario-header-content">
+              <span class="scenario-tag">Scenario 3</span>
+              <h3>Competitor Angle</h3>
+              <p>Stress-test your positioning before the meeting.</p>
+            </div>
+            <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="scenario-accordion-content">
+            <div class="scenario-context">
+              <label>Context (editable)</label>
+              <textarea class="context-input" rows="8">Your data presentation points:
 - Our therapy showed 22% reduction in hospitalizations
 - Once-daily dosing vs twice-daily for competitor
 - Similar safety profile to standard of care
@@ -119,22 +146,23 @@ Competitor landscape:
 - Competitor A has longer-term (5-year) data
 - Competitor B has broader label indication
 - Both have established real-world evidence</textarea>
-          </div>
-          <div class="prompt-cards">
-            <div class="prompt-card-inline good">
-              <div class="prompt-card-header">
-                <span class="prompt-label good">Good Prompt (CRAFT)</span>
-                <div class="prompt-actions">
-                  <button class="use-prompt-btn" type="button" data-prompt="Context: Preparing for a KOL meeting where competitive questions may arise. Role: Play the role of a competitor MSL. Action: What weaknesses would you highlight in this data presentation? What questions would challenge our positioning? Format: Bullet dots with specific competitive challenges. Tone: direct, challenging.">Use This Prompt</button>
-                  <button class="copy-prompt-btn" type="button" data-prompt="Context: Preparing for a KOL meeting where competitive questions may arise. Role: Play the role of a competitor MSL. Action: What weaknesses would you highlight in this data presentation? What questions would challenge our positioning? Format: Bullet dots with specific competitive challenges. Tone: direct, challenging.">Copy Prompt</button>
-                </div>
-              </div>
-              <p class="prompt-text">Context: Preparing for a KOL meeting where competitive questions may arise. Role: Play the role of a competitor MSL. Action: What weaknesses would you highlight in this data presentation? What questions would challenge our positioning? Format: Bullet dots with specific competitive challenges. Tone: direct, challenging.</p>
             </div>
-            <div class="prompt-card-inline bad">
-              <span class="prompt-label bad">Bad Prompt (vague)</span>
-              <p class="prompt-text">"What would a competitor say?"</p>
-              <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+            <div class="prompt-cards">
+              <div class="prompt-card-inline good">
+                <div class="prompt-card-header">
+                  <span class="prompt-label good">Good Prompt (CRAFT)</span>
+                  <div class="prompt-actions">
+                    <button class="use-prompt-btn" type="button" data-prompt="Context: Preparing for a KOL meeting where competitive questions may arise. Role: Play the role of a competitor MSL. Action: What weaknesses would you highlight in this data presentation? What questions would challenge our positioning? Format: Bullet dots with specific competitive challenges. Tone: direct, challenging.">Use This Prompt</button>
+                    <button class="copy-prompt-btn" type="button" data-prompt="Context: Preparing for a KOL meeting where competitive questions may arise. Role: Play the role of a competitor MSL. Action: What weaknesses would you highlight in this data presentation? What questions would challenge our positioning? Format: Bullet dots with specific competitive challenges. Tone: direct, challenging.">Copy Prompt</button>
+                  </div>
+                </div>
+                <p class="prompt-text">Context: Preparing for a KOL meeting where competitive questions may arise. Role: Play the role of a competitor MSL. Action: What weaknesses would you highlight in this data presentation? What questions would challenge our positioning? Format: Bullet dots with specific competitive challenges. Tone: direct, challenging.</p>
+              </div>
+              <div class="prompt-card-inline bad">
+                <span class="prompt-label bad">Bad Prompt (vague)</span>
+                <p class="prompt-text">"What would a competitor say?"</p>
+                <p class="prompt-note bad">Missing: context, role, action specifics, format, tone.</p>
+              </div>
             </div>
           </div>
         </div>
